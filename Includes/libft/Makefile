@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: symatevo <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 22:07:15 by symatevo          #+#    #+#              #
-#    Updated: 2021/01/27 22:07:27 by symatevo         ###   ########.fr        #
+#    Updated: 2022/09/11 17:44:38 by aapresya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,11 @@ SRCS		= ft_memset.c \
 			  ft_putchar_fd.c \
 			  ft_putstr_fd.c \
 			  ft_putendl_fd.c \
-			  ft_putnbr_fd.c
+			  ft_putnbr_fd.c \
+			  ft_words.c \
+			  ft_print_error.c \
+			  ft_check_isnum.c \
+			  
 
 BNS_SRCS	= ft_lstnew.c \
 			  ft_lstadd_front.c \
