@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:08:18 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/10 13:43:22 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:18:37 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,20 @@ void	print_mat(char **mat, int len)
 	}
 }
 
-int	valid_char(char c)
+int	valid_char(char c, int x, int y)
 {
-	return (c == '0' || c == '1' || c == ' ');
+	if (c == '0' || c == '1' || c == ' ')
+		return (1);
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		if (g_data.spawn != ' ')
+			return (0);
+		g_data.player_x = x;
+		g_data.player_y = y;
+		g_data.spawn = c;
+		return (1);
+	}
+	return (0);
 }
 
 int	check_chars(void)
@@ -42,7 +53,7 @@ int	check_chars(void)
 		x = 0;
 		while (x < g_data.map.width)
 		{
-			if (!valid_char(g_data.map.mat[y][x]))
+			if (!valid_char(g_data.map.mat[y][x], x, y))
 				return (0);
 			x++;
 		}

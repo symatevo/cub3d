@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 17:35:34 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:21:01 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ typedef struct s_mlx{
 typedef struct s_data
 {
 	t_map	map;
+	int		player_x;
+	int		player_y;
+	char	spawn;
 }	t_data;
 
 extern t_data	g_data;
@@ -98,9 +101,10 @@ int		surrounded_by_space(int y, int x, char c);
 int		check_row(int y);
 int		check_walls(void);
 int		check_chars(void);
-int		valid_char(char c);
+int		valid_char(char c, int x, int y);
 void	fill_map(int i, int *j, char *line);
 int     parsing(int argc, char **argv, t_file *f);
 char    *get_next_line(int fd);
+void    init_data();
 
 #endif

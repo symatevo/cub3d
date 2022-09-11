@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:13:33 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 17:36:38 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:25:14 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,7 @@ int	read_map(char *filename)
 		return (ft_error("The map is not surrounded by walls"));
 	if (!check_chars())
 		return (ft_error("Wrong characters in the map"));
+	if (g_data.spawn == ' ')
+		return (ft_error("No starting position given"));
 	return (1);
 }

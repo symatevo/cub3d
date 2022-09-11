@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 17:46:21 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:54:16 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,24 @@ int bl(t_file f)
     return(1);
 }
 
+void    init_data()
+{
+    g_data.player_x = -1;
+    g_data.player_y = -1;
+    g_data.spawn = ' ';
+}
+
 int     main(int argc, char **argv)
 {
     t_file      *f;
     //t_world     world;
     //t_mlx       mlx;
-
+    init_data();
     f = malloc(sizeof(t_file));
-    parsing(argc, argv, f);
-    bl(*f);
+    //parsing(argc, argv, f);
+    //bl(*f);
+
+    read_map(argv[1]);
     //main_algorithm(&world);
     //memory_clear();
     return (0);
