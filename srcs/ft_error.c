@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrchr.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/25 21:13:54 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/27 17:31:42 by symatevo         ###   ########.fr       */
+/*   Created: 2022/09/07 17:09:28 by aapresya          #+#    #+#             */
+/*   Updated: 2022/09/10 14:17:52 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Includes/cub3d.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_error(char *err)
 {
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(err, 2);
+	ft_putchar_fd('\n', 2);
+	return (0);
 }
