@@ -10,8 +10,8 @@
 #include "libft/libft.h"
 
 typedef struct s_texture{
-    char    *id;
-    char    *file_name;
+    char    id[2];
+    int     file_name;
 }   t_texture;
 
 typedef struct s_rgb{
@@ -21,7 +21,7 @@ typedef struct s_rgb{
 }   t_rgb;
 
 typedef struct s_ceil_floor{
-    char    id;
+    char    id[1];
     t_rgb   rgb;
 }   t_ceil_floor;
 
@@ -29,6 +29,7 @@ typedef struct s_file {
     t_texture       texture[4];
     t_ceil_floor    cf[2];
     int             **map;
+    int             idx;
 }   t_file;
 
 typedef struct s_xy{
@@ -52,4 +53,5 @@ typedef struct s_mlx{
     void    *mlx_win;
 }   t_mlx;
 
-int parsing(int argc, char **argv);
+int     parsing(int argc, char **argv, t_file *f);
+char    *get_next_line(int fd);
