@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 16:38:02 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:35:34 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define BUFFER_SIZE 1
 
 typedef struct s_texture{
-	char	*id;
-	char	*file_name;
-}	t_texture;
+    char    id[2];
+    int     file_name;
+}   t_texture;
 
 typedef struct s_rgb{
 	int	r;
@@ -37,9 +37,9 @@ typedef struct s_rgb{
 }	t_rgb;
 
 typedef struct s_ceil_floor{
-	char	id;
-	t_rgb	rgb;
-}	t_ceil_floor;
+    char    id[1];
+    t_rgb   rgb;
+}   t_ceil_floor;
 
 typedef struct s_map
 {
@@ -51,6 +51,7 @@ typedef struct s_map
 typedef struct s_file {
 	t_texture		texture[4];
 	t_ceil_floor	cf[2];
+    int             idx;
 }	t_file;
 
 typedef struct s_xy{
@@ -81,12 +82,11 @@ typedef struct s_data
 
 extern t_data	g_data;
 
-int		parsing(int argc, char **argv);
 char	*the_line(char *tmp);
 char	*leftover(char *tmp);
 char	*ft_strjoin_gln(char *s1, char *s2);
 size_t	ft_strlen_gln(char *str);
-int		get_next_line(int fd, char **line);
+int		get_nextline(int fd, char **line);
 int		read_map(char *filename);
 int		find_map(char *filename);
 void	get_height_width(int fd);
@@ -100,5 +100,7 @@ int		check_walls(void);
 int		check_chars(void);
 int		valid_char(char c);
 void	fill_map(int i, int *j, char *line);
+int     parsing(int argc, char **argv, t_file *f);
+char    *get_next_line(int fd);
 
 #endif

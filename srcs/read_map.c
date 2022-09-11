@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:13:33 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 16:38:57 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:36:38 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_height_width(int fd)
 
 	while (1)
 	{
-		r = get_next_line(fd, &line);
+		r = get_nextline(fd, &line);
 		if (r && ft_strlen(line) > g_data.map.width)
 			g_data.map.width = ft_strlen(line);
 		g_data.map.height++;
@@ -40,7 +40,7 @@ int	find_map(char *filename)
 	i = 0;
 	while (1)
 	{
-		r = get_next_line(fd, &line);
+		r = get_nextline(fd, &line);
 		if (line && (line[0] == ' ' || line[0] == '1' || line[0] == '0'))
 		{
 			g_data.map.height = 1;
@@ -87,13 +87,13 @@ void	into_mat(char *filename, int line_num)
 	i = 0;
 	while (i++ < line_num)
 	{
-		get_next_line(fd, &line);
+		get_nextline(fd, &line);
 		free(line);
 	}
 	i = 0;
 	while (1)
 	{
-		r = get_next_line(fd, &line);
+		r = get_nextline(fd, &line);
 		j = 0;
 		fill_map(i, &j, line);
 		free(line);
