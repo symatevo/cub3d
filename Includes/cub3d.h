@@ -21,13 +21,14 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
-# include <mlx.h>
+//# include <mlx.h>
 # include "libft/libft.h"
 # define BUFFER_SIZE 1
 
 typedef struct s_texture{
     char    id[2];
     int     file_name;
+	char	*file;
 }   t_texture;
 
 typedef struct s_rgb{
@@ -70,17 +71,45 @@ typedef struct s_world{
 	double	perpwalldist;
 }	t_world;
 
-typedef struct s_mlx{
-	void	*mlx;
-	void	*mlx_win;
-}	t_mlx;
+typedef	struct	s_img
+{
+	void			*ptr;			//pointer to the image
+	char			*addr;			//The address of the image
+	int				bpp;			//
+	int				line_len;		//
+	int				endian;			//
+	int				width;			//The width of the image
+	int				height;			//The height of the image
+}					t_img;
+
+typedef struct	s_keys
+{
+	char		up;
+	char		down;
+	char		left;
+	char		right;
+	char		check;
+}				t_keys;
+
+typedef struct	s_screen
+{
+	void		*mlx;
+	void		*window;
+	t_img		image;
+}				t_screen;
 
 typedef struct s_data
 {
-	t_map	map;
-	int		player_x;
-	int		player_y;
-	char	spawn;
+	t_screen	scr;
+	t_map		map;
+	int			player_x;
+	int			player_y;
+	char		spawn;
+	t_img		north;
+	t_img		south;
+	t_img		east;
+	t_img		west;
+	t_keys		keys;
 }	t_data;
 
 extern t_data	g_data;
@@ -103,8 +132,13 @@ int		check_walls(void);
 int		check_chars(void);
 int		valid_char(char c, int x, int y);
 void	fill_map(int i, int *j, char *line);
-int     parsing(int argc, char **argv, t_file *f);
-char    *get_next_line(int fd);
-void    init_data();
+int		parsing(int argc, char **argv, t_file *f);
+char	*get_next_line(int fd);
+void	init_data();
+int		ft_mlx_pressed(int keycode, t_keys *keys);
+int		ft_mlx_released(int keycode, t_keys *keys);
+int		ft_mlx_terminate(int keycode, t_keys *keys);
+void	ft_get_sprites(t_file *f);
+void	ft_calculate_resolution(void);
 
 #endif

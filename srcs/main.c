@@ -42,6 +42,22 @@ int     main(int argc, char **argv)
     //bl(*f);
 
     read_map(argv[1]);
+    g_data.scr.mlx = mlx_init();
+    ft_get_sprites(f);
+    //ft_calculate_resolution();    //Do we need this? oof
+    g_data.scr.window = mlx_new_window(g_data.scr.mlx,
+			g_data.scr.image.width, g_data.scr.image.height, "Cub3d");  //image width and image height are not initialized yet
+	g_data.scr.image.ptr = mlx_new_image(g_data.scr.mlx,
+			g_data.scr.image.width, g_data.scr.image.height);
+	g_data.scr.image.addr = mlx_get_data_addr(g_data.scr.image.ptr,
+			&g_data.scr.image.bpp, &g_data.scr.image.line_len,
+			&g_data.scr.image.endian);
+    mlx_hook(g_data.scr.window, 2, 1L << 0, ft_mlx_pressed, &g_data.keys);
+	mlx_hook(g_data.scr.window, 3, 1L << 1, ft_mlx_released, &g_data.keys);
+	mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
+	//mlx_loop_hook(g_data.scr.mlx, ft_render, NULL);
+	mlx_loop(g_data.scr.mlx);
+	//return (0);
     //main_algorithm(&world);
     //memory_clear();
     return (0);
