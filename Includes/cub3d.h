@@ -26,7 +26,7 @@
 # define BUFFER_SIZE 1
 
 typedef struct s_texture{
-    char    id[2];
+    char    id[3];
     int     file_name;
 }   t_texture;
 
@@ -37,7 +37,7 @@ typedef struct s_rgb{
 }	t_rgb;
 
 typedef struct s_ceil_floor{
-    char    id[1];
+    char    id[2];
     t_rgb   rgb;
 }   t_ceil_floor;
 
@@ -52,21 +52,36 @@ typedef struct s_file {
 	t_texture		texture[4];
 	t_ceil_floor	cf[2];
     int             idx;
+	int				fd;
 }	t_file;
 
 typedef struct s_xy{
 	double	x;
 	double	y;
-}	t_xy;
+}	d_xy;
+
+typedef struct m_xy{
+	int	x;
+	int	y;
+}	i_xy;
 
 typedef struct s_world{
-	t_xy	pos;
-	t_xy	raydir;
-	t_xy	sidedist;
-	t_xy	deltadist;
-	t_xy	step;
+	d_xy	pos;
+	d_xy	dir;
+	d_xy	raydir;
+	d_xy	plane;
+	d_xy	sidedist;
+	d_xy	deltadist;
+	i_xy	step;
+	i_xy	map;
+	double	time;
+	double	oldtime;
+	double	camerax;
 	int		side;
 	int		hit;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
 	double	perpwalldist;
 }	t_world;
 
@@ -102,5 +117,7 @@ int		valid_char(char c);
 void	fill_map(int i, int *j, char *line);
 int     parsing(int argc, char **argv, t_file *f);
 char    *get_next_line(int fd);
+int		file_opening(int *fd, char *str);
+int     ft_algorithm(t_file *f);
 
 #endif

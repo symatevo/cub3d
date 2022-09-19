@@ -51,6 +51,7 @@ SRCS		= ft_memset.c \
 			  ft_words.c \
 			  ft_print_error.c \
 			  ft_check_isnum.c \
+			  str_is_space.c \
 			  
 
 BNS_SRCS	= ft_lstnew.c \
