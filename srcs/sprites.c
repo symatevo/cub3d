@@ -27,7 +27,7 @@ void	ft_get_sprites(t_file *f)
 					&g_data.north.width, &g_data.north.height);
 			if (!(g_data.north.ptr))
 				ft_error("Failed to allocate memory for the north texture.");
-			g_data.north.addr = mlx_get_data_addr(g_data.north.ptr,
+			g_data.north.addr = mlx_get_data_addr(g_datas.north.ptr,
 					&g_data.north.bpp, &g_data.north.line_len, &g_data.north.endian);
 		}
 		if (f->texture[i].id[0] == 'E')

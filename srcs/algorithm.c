@@ -167,6 +167,7 @@ int     ft_algorithm(t_file *f)
     t_world     *w;
 	int			y;
 	int			x;
+	int			texx;
 
 	x = 0;
     w = malloc(sizeof(t_world));
