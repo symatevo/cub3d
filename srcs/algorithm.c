@@ -206,7 +206,7 @@ int     ft_algorithm(t_file *f)
 		// printf("%d\n", w->drawstart);
 		// printf("%d\n", w->drawend);
 		//printf("bl%d\n", texx);
-		//draw();
+		draw(x, w, texx);
 		x++;
 	}
 	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window, g_data.scr.image.ptr, 0, 0);
