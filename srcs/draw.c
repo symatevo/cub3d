@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/21 15:43:09 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:06:07 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw(int x, t_world *w, int texx)
 		ft_mlx_pixel_put(&g_data.scr.image, x, y++, g_data.ceiling);
 	while (y <= w->drawstart)
 	{
-		color = ft_mlx_pixel_get(&g_data.north, texx, y / wall_height * g_data.north.height);
+		color = ft_mlx_pixel_get(&g_data.north, texx, (y - w->drawstart) / wall_height * g_data.north.height);
 		ft_mlx_pixel_put(&g_data.scr.image, x, y, color);
 		y++;
 	}
