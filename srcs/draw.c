@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/21 16:06:07 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:27:02 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,20 @@ void	draw(int x, t_world *w, int texx)
 	y = 0;
 	wall_height = w->drawend - w->drawstart + 1;
 	while (y < w->drawend)
-		ft_mlx_pixel_put(&g_data.scr.image, x, y++, g_data.ceiling);
-	while (y <= w->drawstart)
 	{
-		color = ft_mlx_pixel_get(&g_data.north, texx, (y - w->drawstart) / wall_height * g_data.north.height);
-		ft_mlx_pixel_put(&g_data.scr.image, x, y, color);
+		ft_mlx_pixel_put(&g_data.scr.image, x, y, g_data.ceiling);
 		y++;
 	}
-	while (y <= g_data.scr.image.height)
-		ft_mlx_pixel_put(&g_data.scr.image, x, y++, g_data.floor);
+	printf("On x: %d, Drawstart: %d, drawend: %d, y: %d\n", x, w->drawstart, w->drawend, y);
+	while (y <= w->drawstart)
+	{
+		// color = ft_mlx_pixel_get(&g_data.north, texx, (y - w->drawstart) / wall_height * g_data.north.height);
+		// ft_mlx_pixel_put(&g_data.scr.image, x, y, color);
+		y++;
+	}
+	while (y < g_data.scr.image.height)
+	{
+		ft_mlx_pixel_put(&g_data.scr.image, x, y, g_data.floor);
+		y++;	
+	}
 }
