@@ -132,8 +132,8 @@ void	ft_perpwalldist(t_world *w)
 		w->perpwalldist = (w->map.x - w->pos.x + (1 - w->step.x) / 2) / w->raydir.x;
 	else
 		w->perpwalldist = (w->map.y - w->pos.y + (1 - w->step.y) / 2) / w->raydir.y;
-	printf("mapna%d\n posna%f", w->map.x, w->pos.x);
-	printf("mapnay%d\n posnay%f", w->map.y, w->pos.y);
+	//printf("mapna%d\n posna%f", w->map.x, w->pos.x);
+	//printf("mapnay%d\n posnay%f", w->map.y, w->pos.y);
 
 	
 }
@@ -161,7 +161,7 @@ int		ft_texx(t_world *w)
 	else
 		wallx = w->pos.x + w->perpwalldist * w->raydir.x;
 	wallx -=  floor((wallx));
-	printf("blnay%f %f %f\n", w->pos.x, w->perpwalldist, w->raydir.x);
+	//printf("blnay%f %f %f\n", w->pos.x, w->perpwalldist, w->raydir.x);
 	//printf("bl1%f\n", wallx);
 	texx  = (int)(wallx * (double)64); //texturewidth
 	if (w->side == 0  && w->raydir.x > 0)
