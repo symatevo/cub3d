@@ -10,3 +10,8 @@ int	ft_render(void)
 	// mlx_do_sync(g_data.scr.mlx);
 	// return (0);
 }
+
+void	alter_map(void)
+{
+
+}

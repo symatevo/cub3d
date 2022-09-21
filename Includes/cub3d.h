@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 18:21:01 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:25:49 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ int		ft_mlx_released(int keycode, t_keys *keys);
 int		ft_mlx_terminate(int keycode, t_keys *keys);
 void	ft_get_sprites(t_file *f);
 void	ft_calculate_resolution(void);
+int		create_trgb(int t, int r, int g, int b);
 
 #endif
