@@ -63,6 +63,7 @@ void	draw(int x, t_world *w, int texx)
 	int	wall_height;
 
 	y = 0;
+
 	wall_height = w->drawend - w->drawstart + 1;
 	while (y < w->drawend)
 		ft_mlx_pixel_put(&g_data.scr.image, x, y++, g_data.ceiling);

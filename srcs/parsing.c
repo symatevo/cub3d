@@ -54,9 +54,9 @@ int     check_rgb(char *str)
     return 0;
 }
 
-void    texture_fill(t_texture *t, char *str, int fd, int *idx)
+void    texture_fill(t_texture *t, char *str, char *file, int *idx)
 {
-    t->file_name = fd;
+    t->file = file;
 	t->id[0] = str[0];
 	t->id[1] = str[1];
 	t->id[2] = '\0';
@@ -83,15 +83,13 @@ int     line_parse(t_file *f, char *str)
 
     words = ft_words(str);
     if (ft_strcmp(words[0], "NO") == 0 && file_opening(&(f->fd), words[1]))
-        texture_fill(&(f->texture[0]), "NO", f->fd, &(f->idx));
-    if (ft_strcmp(words[0], "NO") == 0 && file_opening(&(f->fd), words[1]))
-        texture_fill(&(f->texture[0]), "NO", f->fd, &(f->idx));
+        texture_fill(&(f->texture[0]), "NO", words[1], &(f->idx));
     else if (ft_strcmp(words[0], "SO") == 0 && file_opening(&(f->fd), words[1]))
-        texture_fill(&(f->texture[1]), "SO", f->fd, &(f->idx));
+        texture_fill(&(f->texture[1]), "SO", words[1], &(f->idx));
     else if (ft_strcmp(words[0], "WE") == 0 && file_opening(&(f->fd), words[1]))
-        texture_fill(&(f->texture[2]), "WE", f->fd, &(f->idx));
+        texture_fill(&(f->texture[2]), "WE", words[1], &(f->idx));
     else if (ft_strcmp(words[0], "EA") == 0 && file_opening(&(f->fd), words[1]))
-        texture_fill(&(f->texture[3]), "EA", f->fd, &(f->idx));
+        texture_fill(&(f->texture[3]), "EA", words[1], &(f->idx));
     else if (ft_strcmp(words[0], "F") == 0 && check_rgb(words[1]))
         cf_fill(&(f->cf[0]), "F", words[1], &(f->idx));
     else if (ft_strcmp(words[0], "C") == 0 && check_rgb(words[1]))
