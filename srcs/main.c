@@ -45,7 +45,8 @@ int     main(int argc, char **argv)
     g_data.scr.mlx = mlx_init();
     if (!ft_get_sprites(f))
         return (1);
-    ft_calculate_resolution();    
+    ft_calculate_resolution();
+    printf("%d\n", g_data.scr.image.height);    
     g_data.scr.window = mlx_new_window(g_data.scr.mlx,
 			g_data.scr.image.width, g_data.scr.image.height, "Cub3d");
 	g_data.scr.image.ptr = mlx_new_image(g_data.scr.mlx,
