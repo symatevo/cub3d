@@ -41,7 +41,7 @@ int	find_map(char *filename)
 	while (1)
 	{
 		r = get_nextline(fd, &line);
-		if (line && (line[0] == ' ' || line[0] == '1' || line[0] == '0'))
+		if (line && (line[0] == '1' || line[0] == '0'))
 		{
 			g_data.map.height = 1;
 			g_data.map.width = ft_strlen(line);

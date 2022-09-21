@@ -43,9 +43,8 @@ int     main(int argc, char **argv)
      if (parsing(argc, argv, f))
          if (read_map(argv[1]))
          {
-             
+            ft_algorithm(f);   
          }
-             ft_algorithm(f);
     g_data.scr.mlx = mlx_init();
     ft_get_sprites(f);
     //ft_calculate_resolution();    //Do we need this? oof
