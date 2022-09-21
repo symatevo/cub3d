@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:13:33 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 18:25:14 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:55:18 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	get_height_width(int fd)
 	{
 		r = get_nextline(fd, &line);
 		if (r && ft_strlen(line) > g_data.map.width)
+		{	
 			g_data.map.width = ft_strlen(line);
+		}
 		g_data.map.height++;
 		free(line);
 		if (!r)
@@ -41,7 +43,7 @@ int	find_map(char *filename)
 	while (1)
 	{
 		r = get_nextline(fd, &line);
-		if (line && (line[0] == ' ' || line[0] == '1' || line[0] == '0'))
+		if (line && (line[0] == '1' || line[0] == '0'))
 		{
 			g_data.map.height = 1;
 			g_data.map.width = ft_strlen(line);
@@ -125,5 +127,6 @@ int	read_map(char *filename)
 		return (ft_error("Wrong characters in the map"));
 	if (g_data.spawn == ' ')
 		return (ft_error("No starting position given"));
+	printf("Position x: %d\nPosition y: %d\n", g_data.player_x, g_data.player_y);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/11 18:54:16 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:34:47 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,26 @@ int     main(int argc, char **argv)
     f = malloc(sizeof(t_file));
     //parsing(argc, argv, f);
     //bl(*f);
-     if (parsing(argc, argv, f))
-         if (read_map(argv[1]))
-         {
-             
-         }
-             ft_algorithm(f);
+    if(!parsing(argc, argv, f) || !read_map(argv[1]))       //not forget to free
+        return (1);
     g_data.scr.mlx = mlx_init();
-    ft_get_sprites(f);
-    //ft_calculate_resolution();    //Do we need this? oof
+    if (!ft_get_sprites(f))
+        return (1);
+    ft_calculate_resolution();    
     g_data.scr.window = mlx_new_window(g_data.scr.mlx,
-			g_data.scr.image.width, g_data.scr.image.height, "Cub3d");  //image width and image height are not initialized yet
+			g_data.scr.image.width, g_data.scr.image.height, "Cub3d");
 	g_data.scr.image.ptr = mlx_new_image(g_data.scr.mlx,
 			g_data.scr.image.width, g_data.scr.image.height);
 	g_data.scr.image.addr = mlx_get_data_addr(g_data.scr.image.ptr,
 			&g_data.scr.image.bpp, &g_data.scr.image.line_len,
 			&g_data.scr.image.endian);
+    g_data.keys.check = 1;
     mlx_hook(g_data.scr.window, 2, 1L << 0, ft_mlx_pressed, &g_data.keys);
 	mlx_hook(g_data.scr.window, 3, 1L << 1, ft_mlx_released, &g_data.keys);
 	mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
-	//mlx_loop_hook(g_data.scr.mlx, ft_render, NULL);
+	mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
 	mlx_loop(g_data.scr.mlx);
-	//return (0);
+	return (0);
     //main_algorithm(&world);
     //memory_clear();
-    return (0);
 }
