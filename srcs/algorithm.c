@@ -9,25 +9,8 @@ int     is_pos(char c)
 
 void     ft_find_pos(double *posx, double *posy)
 {
-    int x;
-    int y;
-
-    x = 0;
-    while (x < g_data.map.height)
-    {
-        y = 0;
-        while (y < g_data.map.width)
-        {    
-            if (is_pos(g_data.map.mat[x][y]))
-            {
-                *posx = x;
-                *posy = y;
-                break;
-            }
-            y++;
-        }
-        x++;
-    }
+	*posx = g_data.player_y;
+	*posy = g_data.player_x;
 }
 
 void    ft_fillxy(double *x, double *y, double xv, double yv)
@@ -44,7 +27,8 @@ int     ft_init(t_world *w, t_file f)
     ft_find_pos(&(w->pos.x), &(w->pos.y));
     x = (int)w->pos.x;
     y = (int)w->pos.y;
-    if (g_data.map.mat[x][y] == 'N')
+	printf("%c", g_data.map.mat[x][y]);
+    if (g_data.map.mat[y][x] == 'N')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
 		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
@@ -147,7 +131,10 @@ void	ft_perpwalldist(t_world *w)
 	if (w->side == 0)
 		w->perpwalldist = (w->map.x - w->pos.x + (1 - w->step.x) / 2) / w->raydir.x;
 	else
-		w->perpwalldist = (w->map.y - w->pos.y + (1 - w->step.y) / 2) / w->raydir.y;	
+		w->perpwalldist = (w->map.y - w->pos.y + (1 - w->step.y) / 2) / w->raydir.y;
+	printf("mapna%d\n posna%f", w->map.x, w->pos.x);
+	printf("mapnay%d\n posnay%f", w->map.y, w->pos.y);
+
 	
 }
 
@@ -162,6 +149,28 @@ void	start_end_pixel(t_world *w)
 		w->drawend = 10 - 1;
 }
 
+int		ft_texx(t_world *w)
+{
+	int		texx;
+	double	wallx;
+
+	//if (ft_isdigit(g_data.map.mat[w->map.x][w->map.y]))
+		//texnum = ft_atoi(g_data.map.mat[w->map.x][w->map.y]) - 1;
+	if (w->side == 0)
+		wallx = w->pos.y + w->perpwalldist * w->raydir.y;
+	else
+		wallx = w->pos.x + w->perpwalldist * w->raydir.x;
+	wallx -=  floor((wallx));
+	printf("blnay%f %f %f\n", w->pos.x, w->perpwalldist, w->raydir.x);
+	//printf("bl1%f\n", wallx);
+	texx  = (int)(wallx * (double)64); //texturewidth
+	if (w->side == 0  && w->raydir.x > 0)
+		texx = 64 - texx - 1; //texturewidth
+	if (w->side  == 1 && w->raydir.y < 0)
+		texx = 64 - texx - 1; //texturewith
+	return (texx);
+	
+}
 int     ft_algorithm(t_file *f)
 {
     t_world     *w;
@@ -180,6 +189,7 @@ int     ft_algorithm(t_file *f)
 	//draw_floor
 	while (x < g_data.scr.image.width) //screenWidth)
 	{
+		y = 0;
 		ft_raydir(w, x);
 		ft_map_box(w);
 		ft_deltadist(w);
@@ -187,11 +197,16 @@ int     ft_algorithm(t_file *f)
 		ft_DDA(w);
 		ft_perpwalldist(w);
 		start_end_pixel(w);
+		texx = ft_texx(w);
 		//colors(w, f);
 		// printf("X: %d\n", x);
 		// printf("Drawstart: %d\n", w->drawstart);
 		// printf("Drawend: %d\n", w->drawend);
 		//draw(x, w, texx);
+		printf("%d\n", w->drawstart);
+		printf("%d\n", w->drawend);
+		//printf("bl%d\n", texx);
+		//draw();
 		x++;
 	}
 	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window, g_data.scr.image.ptr, 0, 0);
