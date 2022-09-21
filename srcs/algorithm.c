@@ -27,7 +27,7 @@ int     ft_init(t_world *w, t_file f)
     ft_find_pos(&(w->pos.x), &(w->pos.y));
     x = (int)w->pos.x;
     y = (int)w->pos.y;
-	printf("%c", g_data.map.mat[x][y]);
+	//printf("%c", g_data.map.mat[x][y]);
     if (g_data.map.mat[y][x] == 'N')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
@@ -145,7 +145,7 @@ void	start_end_pixel(t_world *w)
 	if (w->drawstart < 0)
 		w->drawstart = 0;
 	w->drawend = (w->lineheight) / 2 + g_data.scr.image.height / 2; //screenheight;
-	if (w->drawend < g_data.scr.image.height) //screnehgith
+	if (w->drawend < 0) //screnehgith
 		w->drawend = g_data.scr.image.height - 1;
 }
 

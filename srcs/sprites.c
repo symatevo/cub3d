@@ -14,8 +14,8 @@ void	ft_calculate_resolution(void)
 	// g_data.scr.image.height = g_data.square_size * g_data.map->height;
 	//g_data.scr.image.width = screen_w;
 	//g_data.scr.image.height = screen_h;
-	g_data.scr.image.width = 500;
-	g_data.scr.image.height = 500;
+	g_data.scr.image.width = 800;
+	g_data.scr.image.height = 800;
 }
 
 int	ft_get_sprites(t_file *f)
@@ -25,6 +25,7 @@ int	ft_get_sprites(t_file *f)
 
 	j = 0;
 	i = 0;
+	g_data.temp_color = create_trgb(1, 255, 0, 0);
 	while (j < 2)
 	{
 		if (f->cf[j].id[0] == 'C')

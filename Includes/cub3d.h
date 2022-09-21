@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/21 15:23:04 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:02:12 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_data
 	t_keys		keys;
 	int			ceiling;
 	int			floor;
+	int			temp_color;
 }	t_data;
 
 extern t_data	g_data;
