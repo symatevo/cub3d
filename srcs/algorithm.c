@@ -181,12 +181,13 @@ int     ft_algorithm(t_file *f)
 	x = 0;
     w = malloc(sizeof(t_world));
     ft_init(w, *f);
+	alter_map(w);
+	print_mat(g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
     //move
 	//rotate
 	//draw_floor
-	//while moving
-	while (x < 10) //screenWidth)
+	while (x < g_data.scr.image.width) //screenWidth)
 	{
 		y = 0;
 		ft_raydir(w, x);
@@ -198,11 +199,18 @@ int     ft_algorithm(t_file *f)
 		start_end_pixel(w);
 		texx = ft_texx(w);
 		//colors(w, f);
+		// printf("X: %d\n", x);
+		// printf("Drawstart: %d\n", w->drawstart);
+		// printf("Drawend: %d\n", w->drawend);
+		//draw(x, w, texx);
 		printf("%d\n", w->drawstart);
 		printf("%d\n", w->drawend);
 		//printf("bl%d\n", texx);
 		//draw();
 		x++;
 	}
+	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window, g_data.scr.image.ptr, 0, 0);
+	mlx_string_put(g_data.scr.mlx, g_data.scr.window, 25, 25, 0x00FF0000, " ");
+	mlx_do_sync(g_data.scr.mlx);
 	return (0);
 }
