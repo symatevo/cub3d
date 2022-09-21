@@ -56,7 +56,7 @@ int     ft_init(t_world *w, t_file f)
 
 void	ft_raydir(t_world *w, int x)
 {
-	w->camerax = 2 * x / (float)10 - 1; //(double)screenWidth)
+	w->camerax = 2 * x / (float)g_data.scr.image.width - 1; //(double)screenWidth)
 	w->raydir.x = w->dir.x + w->plane.x * w->camerax;
 	w->raydir.y = w->dir.y + w->plane.y * w->camerax;
 }
@@ -140,13 +140,13 @@ void	ft_perpwalldist(t_world *w)
 
 void	start_end_pixel(t_world *w)
 {
-	w->lineheight = (int)(10 / w->perpwalldist); //screenheight;
-	w->drawstart = -(w->lineheight) / 2 + 10 / 2; //screenheight;
+	w->lineheight = (int)(g_data.scr.image.height / w->perpwalldist); //screenheight;
+	w->drawstart = -(w->lineheight) / 2 + g_data.scr.image.height / 2; //screenheight;
 	if (w->drawstart < 0)
 		w->drawstart = 0;
-	w->drawend = (w->lineheight) / 2 + 10 / 2; //screenheight;
-	if (w->drawend < 0) //screnehgith
-		w->drawend = 10 - 1;
+	w->drawend = (w->lineheight) / 2 + g_data.scr.image.height / 2; //screenheight;
+	if (w->drawend < g_data.scr.image.height) //screnehgith
+		w->drawend = g_data.scr.image.height - 1;
 }
 
 int		ft_texx(t_world *w)
@@ -163,14 +163,14 @@ int		ft_texx(t_world *w)
 	wallx -=  floor((wallx));
 	//printf("blnay%f %f %f\n", w->pos.x, w->perpwalldist, w->raydir.x);
 	//printf("bl1%f\n", wallx);
-	texx  = (int)(wallx * (double)64); //texturewidth
+	texx  = (int)(wallx * (double)g_data.north.width); //texturewidth
 	if (w->side == 0  && w->raydir.x > 0)
-		texx = 64 - texx - 1; //texturewidth
+		texx = g_data.north.width - texx - 1; //texturewidth
 	if (w->side  == 1 && w->raydir.y < 0)
-		texx = 64 - texx - 1; //texturewith
+		texx = g_data.north.width - texx - 1; //texturewith
 	return (texx);
-	
 }
+
 int     ft_algorithm(t_file *f)
 {
     t_world     *w;
@@ -182,7 +182,7 @@ int     ft_algorithm(t_file *f)
     w = malloc(sizeof(t_world));
     ft_init(w, *f);
 	alter_map(w);
-	print_mat(g_data.map.mat, g_data.map.height);
+	//print_mat(g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
     //move
 	//rotate
@@ -203,8 +203,8 @@ int     ft_algorithm(t_file *f)
 		// printf("Drawstart: %d\n", w->drawstart);
 		// printf("Drawend: %d\n", w->drawend);
 		//draw(x, w, texx);
-		printf("%d\n", w->drawstart);
-		printf("%d\n", w->drawend);
+		// printf("%d\n", w->drawstart);
+		// printf("%d\n", w->drawend);
 		//printf("bl%d\n", texx);
 		//draw();
 		x++;
