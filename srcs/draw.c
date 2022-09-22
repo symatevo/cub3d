@@ -73,7 +73,14 @@ void	draw(int x, t_world *w, int texx)
 			ft_mlx_pixel_put(&g_data.scr.image, x, y, g_data.ceiling);
 		if (y >= w->drawstart && y < w->drawend)
 		{
-			color = ft_mlx_pixel_get(&g_data.north, texx, (y - w->drawstart) / wall_height * g_data.north.height);
+			//float texy;
+			//texy = (y - w->drawstart) / wall_height * g_data.north.height;
+			//color = ft_mlx_pixel_get(&g_data.north, texx, texy);
+			color = ft_mlx_pixel_get(&g_data.north, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
+			//printf("texx: %d, texy: %d\n", texx, (y - w->drawstart) / wall_height * g_data.north.height);
+			//printf("%d, %d\n", g_data.north.height, wall_height);
+			//printf("%d, %d\n", w->drawstart, y);
+			//printf("%d", y);
 			//color = g_data.temp_color;
 			ft_mlx_pixel_put(&g_data.scr.image, x, y, color);
 		}

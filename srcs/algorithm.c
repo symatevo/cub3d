@@ -28,7 +28,7 @@ int     ft_init(t_world *w, t_file f)
     x = (int)w->pos.x;
     y = (int)w->pos.y;
 	//printf("%c", g_data.map.mat[x][y]);
-    if (g_data.map.mat[y][x] == 'N')
+    if (g_data.map.mat[x][y] == 'N')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
 		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
@@ -59,6 +59,7 @@ void	ft_raydir(t_world *w, int x)
 	w->camerax = 2 * x / (float)g_data.scr.image.width - 1; //(double)screenWidth)
 	w->raydir.x = w->dir.x + w->plane.x * w->camerax;
 	w->raydir.y = w->dir.y + w->plane.y * w->camerax;
+	//printf("stexraydirna%f\n", w->raydir.y);
 }
 
 void		ft_map_box(t_world *w)
@@ -87,7 +88,7 @@ void	ft_step_sidedist(t_world *w)
 		w->step.x = -1;
 		w->sidedist.x = (w->pos.x - w->map.x) * w->deltadist.x;
 	}
-	else
+	else if (w->raydir.x >= 0)
 	{
 		w->step.x = 1;
 		w->sidedist.x = (w->map.x + 1.0 - w->pos.x) * w->deltadist.x;
@@ -131,9 +132,12 @@ void	ft_perpwalldist(t_world *w)
 	if (w->side == 0)
 		w->perpwalldist = (w->map.x - w->pos.x + (1 - w->step.x) / 2) / w->raydir.x;
 	else
+	{
 		w->perpwalldist = (w->map.y - w->pos.y + (1 - w->step.y) / 2) / w->raydir.y;
+		//printf("waldistna%f\n", w->perpwalldist);
+	}
 	//printf("mapna%d\n posna%f", w->map.x, w->pos.x);
-	//printf("mapnay%d\n posnay%f", w->map.y, w->pos.y);
+	//printf("mapnay%d\n posnay%f, stepna%d, rayna%f\n", w->map.y, w->pos.y, w->step.y, w->raydir.y);
 
 	
 }
@@ -198,6 +202,12 @@ int     ft_algorithm(t_file *f)
 		ft_perpwalldist(w);
 		start_end_pixel(w);
 		texx = ft_texx(w);
+		while (y < g_data.scr.image.height)
+		{
+			//if (y >= w->drawstart && y < w->drawend)
+				//texy = 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
+			draw(x, w, texx, texy);
+		}
 		//colors(w, f);
 		// printf("X: %d\n", x);
 		// printf("Drawstart: %d\n", w->drawstart);
