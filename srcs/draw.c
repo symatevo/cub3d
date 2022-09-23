@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 18:44:16 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:57:43 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	alter_map(t_world *w)
 	if (g_data.keys.up)
 	{
 		//printf("Key Up\n");
-		tempx = (int)(w->dir.y * movespeed + g_data.player_x);
-		tempy = (int)(g_data.player_y - w->dir.x * movespeed);
+		tempx = (int)(g_data.player_x - w->dir.y * movespeed);
+		tempy = (int)(g_data.player_y + w->dir.x * movespeed);
 		//printf("Tempx: %d, tempy: %d\n", tempx, tempy);
 		if (valid_indices(tempx, tempy))
 		{
@@ -61,8 +61,8 @@ void	alter_map(t_world *w)
 	}
 	if (g_data.keys.down)
 	{
-		tempx = (int)(g_data.player_x - w->dir.y * movespeed);
-		tempy = (int)(g_data.player_y + w->dir.x * movespeed);
+		tempx = (int)(g_data.player_x + w->dir.y * movespeed);
+		tempy = (int)(g_data.player_y - w->dir.x * movespeed);
 		if (valid_indices(tempx, tempy))
 		{
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
