@@ -14,8 +14,8 @@ void	ft_calculate_resolution(void)
 	// g_data.scr.image.height = g_data.square_size * g_data.map->height;
 	//g_data.scr.image.width = screen_w;
 	//g_data.scr.image.height = screen_h;
-	g_data.scr.image.width = 800;
-	g_data.scr.image.height = 800;
+	g_data.scr.image.width = 1280;
+	g_data.scr.image.height = 1100;
 }
 
 int	ft_get_sprites(t_file *f)

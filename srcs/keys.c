@@ -35,7 +35,7 @@ int	ft_mlx_released(int keycode, t_keys *keys)
 		if (keycode == 2)
 			keys->right = 0;
 		if (keycode == 0)
-			keys->left = 97;
+			keys->left = 0;
 		keys->check = 1;
 	}
 	return (0);
