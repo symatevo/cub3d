@@ -40,14 +40,14 @@ int     ft_init(t_world *w, t_file f)
 	}
     else if (g_data.map.mat[x][y] == 'W')
 	{
-        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
+        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0);
 
 	}
     else if (g_data.map.mat[x][y] == 'E')
 	{
-        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
-    	ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0);
+        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
+    	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
 	}
 	w->time = 0;
 	w->oldtime = 0;
@@ -210,12 +210,12 @@ int     ft_algorithm(t_file *f)
 		// }
 		//colors(w, f);
 		// printf("X: %d\n", x);
-		printf("Drawstart: %d\n", w->drawstart);
-		printf("Drawend: %d\n", w->drawend);
+		//printf("Drawstart: %d\n", w->drawstart);
+		//printf("Drawend: %d\n", w->drawend);
 		//draw(x, w, texx);
 		// printf("%d\n", w->drawstart);
 		// printf("%d\n", w->drawend);
-		printf("bl%d\n", texx);
+		//printf("bl%d\n", texx);
 		draw(x, w, texx);
 		x++;
 	}
