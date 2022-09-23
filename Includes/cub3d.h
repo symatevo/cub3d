@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/21 19:02:12 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:23:57 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/time.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -128,6 +129,8 @@ typedef struct s_data
 	int			ceiling;
 	int			floor;
 	int			temp_color;
+	long double	time;
+	long double	oldtime;
 }	t_data;
 
 extern t_data	g_data;
@@ -167,5 +170,5 @@ void			draw(int x, t_world *w, int texx);
 void			mlx_get_screen_size(void *mlx, int *screen_w, int *screen_h);		//idk should I leave it this way?
 void			ft_mlx_pixel_put(t_img *image, int x, int y, int color);
 unsigned int	ft_mlx_pixel_get(t_img *image, int x, int y);
-
+long long		get_time(void);
 #endif

@@ -186,7 +186,7 @@ int     ft_algorithm(t_file *f)
     w = malloc(sizeof(t_world));
     ft_init(w, *f);
 	alter_map(w);
-	//print_mat(g_data.map.mat, g_data.map.height);
+	//print_mat( g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
     //move
 	//rotate
@@ -202,20 +202,20 @@ int     ft_algorithm(t_file *f)
 		ft_perpwalldist(w);
 		start_end_pixel(w);
 		texx = ft_texx(w);
-		while (y < g_data.scr.image.height)
-		{
+		// while (y < g_data.scr.image.height)
+		// {
 			//if (y >= w->drawstart && y < w->drawend)
 				//texy = 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
-			draw(x, w, texx, texy);
-		}
+		//	draw(x, w, texx);
+		// }
 		//colors(w, f);
 		// printf("X: %d\n", x);
-		// printf("Drawstart: %d\n", w->drawstart);
-		// printf("Drawend: %d\n", w->drawend);
+		printf("Drawstart: %d\n", w->drawstart);
+		printf("Drawend: %d\n", w->drawend);
 		//draw(x, w, texx);
 		// printf("%d\n", w->drawstart);
 		// printf("%d\n", w->drawend);
-		//printf("bl%d\n", texx);
+		printf("bl%d\n", texx);
 		draw(x, w, texx);
 		x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/21 19:45:24 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:44:16 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,41 @@ int	valid_indices(int x, int y)
 
 void	alter_map(t_world *w)
 {
+	int		tempx;
+	int		tempy;
+	double	frametime;
+	double	movespeed;
+	double 	rotspeed;
+
+	g_data.oldtime = g_data.time;
+	g_data.time = get_time();
+	frametime = (g_data.time - g_data.oldtime) / 1000;		//converts to seconds
+	//printf("Time now: %Lf\n, frametime: %f\n", g_data.time, frametime);
+	movespeed = frametime * 5.0;
+	rotspeed = frametime * 3.0;
 	if (g_data.keys.up)
 	{
-		printf("Key Up\n");
-		if (valid_indices(w->dir.x + g_data.player_x, g_data.player_y - w->dir.y))
+		//printf("Key Up\n");
+		tempx = (int)(w->dir.y * movespeed + g_data.player_x);
+		tempy = (int)(g_data.player_y - w->dir.x * movespeed);
+		//printf("Tempx: %d, tempy: %d\n", tempx, tempy);
+		if (valid_indices(tempx, tempy))
 		{
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
-			g_data.player_x = w->dir.x + g_data.player_x;
-			g_data.player_y = g_data.player_y - w->dir.y;
+			g_data.player_x = tempx;
+			g_data.player_y = tempy;
 			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
 		}
 	}
 	if (g_data.keys.down)
 	{
-		if (valid_indices(g_data.player_x - w->dir.x, g_data.player_y + w->dir.y))
+		tempx = (int)(g_data.player_x - w->dir.y * movespeed);
+		tempy = (int)(g_data.player_y + w->dir.x * movespeed);
+		if (valid_indices(tempx, tempy))
 		{
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
-			g_data.player_x = g_data.player_x - w->dir.x;
-			g_data.player_y = g_data.player_y + w->dir.y;
+			g_data.player_x = tempx;
+			g_data.player_y = tempy;
 			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
 		}
 	}

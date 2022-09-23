@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:24:40 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/20 18:43:42 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:22:34 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,13 @@ unsigned int	ft_mlx_pixel_get(t_img *image, int x, int y)
 
 	dst = image->addr + (y * image->line_len + x * (image->bpp / 8));
 	return (*(unsigned int *)dst);
+}
+
+long long	get_time(void)
+{
+	struct timeval	c;
+
+	gettimeofday(&c, NULL);
+	return ((c.tv_sec * 1000) + (c.tv_usec / 1000));		//in miliseconds - Do I need just seconds?
+	// return (c.tv_sec + (c.tv_sec / 1000000));				//in seconds?
 }

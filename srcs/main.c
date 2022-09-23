@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/21 15:48:57 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:52:37 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int     main(int argc, char **argv)
     if (!ft_get_sprites(f))
         return (1);
     ft_calculate_resolution();
-    printf("%d\n", g_data.scr.image.height);    
+    printf("%d\n", g_data.scr.image.height);
+    g_data.time = 0;
+    g_data.oldtime = 0;    
     g_data.scr.window = mlx_new_window(g_data.scr.mlx,
 			g_data.scr.image.width, g_data.scr.image.height, "Cub3d");
 	g_data.scr.image.ptr = mlx_new_image(g_data.scr.mlx,
