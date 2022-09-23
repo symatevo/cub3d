@@ -83,6 +83,7 @@ void	draw(int x, t_world *w, int texx)
 	y = 0;
 
 	wall_height = w->drawend - w->drawstart;
+	printf("%f, %f\n", w->dir.x, w->dir.y);
 	//printf("On x: %d, Drawstart: %d, drawend: %d\n", x, w->drawstart, w->drawend);
 	while (y < g_data.scr.image.height)
 	{

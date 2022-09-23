@@ -11,6 +11,8 @@ void     ft_find_pos(double *posx, double *posy)
 {
 	*posx = g_data.player_y;
 	*posy = g_data.player_x;
+	//g_data.player_x += 0.5;
+	//g_data.player_y += 0.5;
 }
 
 void    ft_fillxy(double *x, double *y, double xv, double yv)
@@ -27,27 +29,29 @@ int     ft_init(t_world *w, t_file f)
     ft_find_pos(&(w->pos.x), &(w->pos.y));
     x = (int)w->pos.x;
     y = (int)w->pos.y;
+	w->pos.x += 0.5;
+	w->pos.y += 0.5;
 	//printf("%c", g_data.map.mat[x][y]);
     if (g_data.map.mat[x][y] == 'N')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), -1, 0);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, 0.66);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.0, 0.66);
 	}
     else if (g_data.map.mat[x][y] == 'S')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 1, 0);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, -0.66);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.0, -0.66);
 	}
     else if (g_data.map.mat[x][y] == 'W')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0.0);
 
 	}
     else if (g_data.map.mat[x][y] == 'E')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
-    	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
+    	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0.0);
 	}
 	w->time = 0;
 	w->oldtime = 0;
@@ -56,7 +60,7 @@ int     ft_init(t_world *w, t_file f)
 
 void	ft_raydir(t_world *w, int x)
 {
-	w->camerax = 2 * x / (float)g_data.scr.image.width - 1; //(double)screenWidth)
+	w->camerax = 2 * x / (double)g_data.scr.image.width - 1; //(double)screenWidth)
 	w->raydir.x = w->dir.x + w->plane.x * w->camerax;
 	w->raydir.y = w->dir.y + w->plane.y * w->camerax;
 	//printf("stexraydirna%f\n", w->raydir.y);
@@ -88,7 +92,7 @@ void	ft_step_sidedist(t_world *w)
 		w->step.x = -1;
 		w->sidedist.x = (w->pos.x - w->map.x) * w->deltadist.x;
 	}
-	else if (w->raydir.x >= 0)
+	else
 	{
 		w->step.x = 1;
 		w->sidedist.x = (w->map.x + 1.0 - w->pos.x) * w->deltadist.x;
