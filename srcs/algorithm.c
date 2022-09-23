@@ -30,24 +30,24 @@ int     ft_init(t_world *w, t_file f)
 	//printf("%c", g_data.map.mat[x][y]);
     if (g_data.map.mat[x][y] == 'N')
 	{
-        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
+        ft_fillxy(&(w->dir.x), &(w->dir.y), -1, 0);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, 0.66);
 	}
     else if (g_data.map.mat[x][y] == 'S')
 	{
-        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0);
+        ft_fillxy(&(w->dir.x), &(w->dir.y), 1, 0);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, -0.66);
 	}
     else if (g_data.map.mat[x][y] == 'W')
 	{
-        ft_fillxy(&(w->dir.x), &(w->dir.y), -1, 0);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, 0.66);
+        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
 
 	}
     else if (g_data.map.mat[x][y] == 'E')
 	{
-        ft_fillxy(&(w->dir.x), &(w->dir.y), 1, 0);
-    	ft_fillxy(&(w->plane.x), &(w->plane.y), 0, -0.66);
+        ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
+    	ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0);
 	}
 	w->time = 0;
 	w->oldtime = 0;
