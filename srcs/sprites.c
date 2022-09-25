@@ -25,7 +25,7 @@ int	ft_get_sprites(t_file *f)
 
 	j = 0;
 	i = 0;
-	g_data.temp_color = create_trgb(1, 255, 0, 0);
+	//g_data.temp_color = create_trgb(1, 255, 0, 0);
 	while (j < 2)
 	{
 		if (f->cf[j].id[0] == 'C')
@@ -34,11 +34,12 @@ int	ft_get_sprites(t_file *f)
 			g_data.floor = create_trgb(1, f->cf[j].rgb.r, f->cf[j].rgb.g, f->cf[j].rgb.b);
 		j++;
 	}
+	// printf("Ceiling color before: %d\n", g_data.ceiling);
 	while (i < 4)
 	{
 		if (f->texture[i].id[0] == 'N')
 		{
-			g_data.north.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, "./textures/north.xpm",
+			g_data.north.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, f->texture[i].file,
 					&g_data.north.width, &g_data.north.height);
 			if (!(g_data.north.ptr))
 				return (ft_error("Failed to allocate memory for the north texture."));
@@ -47,7 +48,7 @@ int	ft_get_sprites(t_file *f)
 		}
 		if (f->texture[i].id[0] == 'E')
 		{
-			g_data.east.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, "./textures/south.xpm",
+			g_data.east.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, f->texture[i].file,
 					&g_data.east.width, &g_data.east.height);
 			if (!(g_data.east.ptr))
 				return (ft_error("Failed to allocate memory for the east texture."));
@@ -56,7 +57,7 @@ int	ft_get_sprites(t_file *f)
 		}
 		if (f->texture[i].id[0] == 'W')
 		{
-			g_data.west.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, "./textures/east.xpm",
+			g_data.west.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, f->texture[i].file,
 					&g_data.west.width, &g_data.west.height);
 			if (!(g_data.west.ptr))
 				return (ft_error("Failed to allocate memory for the west texture."));
@@ -65,7 +66,7 @@ int	ft_get_sprites(t_file *f)
 		}
 		if (f->texture[i].id[0] == 'S')
 		{
-			g_data.south.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, "./textures/west.xpm",			//f->texture[i].file
+			g_data.south.ptr = mlx_xpm_file_to_image(g_data.scr.mlx, f->texture[i].file,			//f->texture[i].file
 					&g_data.south.width, &g_data.south.height);
 			if (!(g_data.south.ptr))
 				return (ft_error("Failed to allocate memory for the south texture."));

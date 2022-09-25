@@ -155,6 +155,37 @@ void	start_end_pixel(t_world *w)
 	w->drawend = (w->lineheight) / 2 + g_data.scr.image.height / 2; //screenheight;
 	if (w->drawend < 0) //screnehgith
 		w->drawend = g_data.scr.image.height - 1;
+	g_data.side = '0';
+	if (w->side == 0)
+	{
+		if (w->raydir.x < 0)
+		{
+			//printf("Ceiling color before: %d\n", g_data.ceiling);
+			//printf("Ceiling color after: %d\n",g_data.ceiling);
+			//Ooooooof de ashxati asum em
+			//g_data.side = 'N';
+			g_data.current = g_data.north;
+		}	
+		else if (w->raydir.x > 0)
+		{
+			//g_data.side = 'S';
+			g_data.current = g_data.south;
+		}
+	}
+	else if (w-> side == 1)
+	{
+		if (w->raydir.y < 0)
+		{
+	 		//g_data.side = 'W';
+			g_data.current = g_data.west;
+		}
+	 	else if (w->raydir.y > 0)
+		{
+	 		//g_data.side = 'E';
+			g_data.current = g_data.east;
+		}
+	}
+
 }
 
 int		ft_texx(t_world *w)
@@ -163,7 +194,7 @@ int		ft_texx(t_world *w)
 	double	wallx;
 
 	//if (ft_isdigit(g_data.map.mat[w->map.x][w->map.y]))
-		//texnum = ft_atoi(g_data.map.mat[w->map.x][w->map.y]) - 1;
+		//texnum = ft_atoi(g_data.map.mat[w->map.x][w->map.y]) - 1;   ++++
 	if (w->side == 0)
 		wallx = w->pos.y + w->perpwalldist * w->raydir.y;
 	else
@@ -173,9 +204,12 @@ int		ft_texx(t_world *w)
 	//printf("bl1%f\n", wallx);
 	texx  = (int)(wallx * (double)g_data.north.width); //texturewidth
 	if (w->side == 0  && w->raydir.x > 0)
-		texx = g_data.north.width - texx - 1; //texturewidth
+	//{
+		texx = g_data.current.width - texx - 1; //texturewidth
+		//w->c = 'N';
+	//}
 	if (w->side  == 1 && w->raydir.y < 0)
-		texx = g_data.north.width - texx - 1; //texturewith
+		texx = g_data.current.width - texx - 1; //texturewith
 	return (texx);
 }
 
@@ -189,7 +223,7 @@ int     ft_algorithm(t_file *f)
 	x = 0;
     w = malloc(sizeof(t_world));
     ft_init(w, *f);
-	alter_map(w);
+	alter_map(w); //of
 	//print_mat( g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
     //move

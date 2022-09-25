@@ -35,27 +35,23 @@ void	alter_map(t_world *w)
 {
 	int		tempx;
 	int		tempy;
-	double	frametime;
 	double	movespeed;
 	double 	rotspeed;
-
-	g_data.oldtime = g_data.time;
-	g_data.time = get_time();
-	frametime = (g_data.time - g_data.oldtime) / 1000;		//converts to seconds
-	//printf("Time now: %Lf\n, frametime: %f\n", g_data.time, frametime);
-	movespeed = frametime * 5.0;
-	rotspeed = frametime * 3.0;
+	
+	movespeed = 1.5;
+	rotspeed = 0.1;
 	if (g_data.keys.up)
 	{
 		//printf("Key Up\n");
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempx = (int)(g_data.player_x - w->dir.y);
+			tempx = (int)(g_data.player_x - w->dir.y * movespeed);
 		else
-			tempx = (int)(g_data.player_x + w->dir.y);
-		tempy = (int)(g_data.player_y + w->dir.x);
+			tempx = (int)(g_data.player_x + w->dir.y * movespeed);
+		tempy = (int)(g_data.player_y + w->dir.x * movespeed);
 		//printf("Tempx: %d, tempy: %d\n", tempx, tempy);
 		if (valid_indices(tempx, tempy))
 		{
+			printf("AAA\n");
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
 			g_data.player_x = tempx;
 			g_data.player_y = tempy;
@@ -65,10 +61,11 @@ void	alter_map(t_world *w)
 	if (g_data.keys.down)
 	{
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempx = (int)(g_data.player_x + w->dir.y);
+			tempx = (int)(g_data.player_x + w->dir.y * movespeed);
 		else
-			tempx = (int)(g_data.player_x - w->dir.y);
-		tempy = (int)(g_data.player_y - w->dir.x);
+			tempx = (int)(g_data.player_x - w->dir.y * movespeed);
+		tempy = (int)(g_data.player_y - w->dir.x * movespeed);
+		printf("Tempx: %d, tempy: %d\n", tempx, tempy);
 		if (valid_indices(tempx, tempy))
 		{
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
@@ -80,10 +77,10 @@ void	alter_map(t_world *w)
 	if (g_data.keys.left)
 	{
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempy = (int)(g_data.player_y + w->dir.y);
+			tempy = (int)(g_data.player_y + w->dir.y * movespeed);
 		else
-			tempy = (int)(g_data.player_y - w->dir.y);
-		tempx = (int)(g_data.player_x + w->dir.x);
+			tempy = (int)(g_data.player_y - w->dir.y * movespeed);
+		tempx = (int)(g_data.player_x + w->dir.x * movespeed);
 		if (valid_indices(tempx, tempy))
 		{
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
@@ -95,10 +92,10 @@ void	alter_map(t_world *w)
 	if (g_data.keys.right)
 	{
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempy = (int)(g_data.player_y - w->dir.y);
+			tempy = (int)(g_data.player_y - w->dir.y * movespeed);
 		else
-			tempy = (int)(g_data.player_y + w->dir.y);
-		tempx = (int)(g_data.player_x - w->dir.x);
+			tempy = (int)(g_data.player_y + w->dir.y * movespeed);
+		tempx = (int)(g_data.player_x - w->dir.x * movespeed);
 		if (valid_indices(tempx, tempy))
 		{
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
@@ -119,7 +116,7 @@ void	draw(int x, t_world *w, int texx)
 	y = 0;
 
 	wall_height = w->drawend - w->drawstart;
-	printf("%f, %f\n", w->dir.x, w->dir.y);
+	//printf("%f, %f\n", w->dir.x, w->dir.y);
 	//printf("On x: %d, Drawstart: %d, drawend: %d\n", x, w->drawstart, w->drawend);
 	while (y < g_data.scr.image.height)
 	{
@@ -130,7 +127,15 @@ void	draw(int x, t_world *w, int texx)
 			//float texy;
 			//texy = (y - w->drawstart) / wall_height * g_data.north.height;
 			//color = ft_mlx_pixel_get(&g_data.north, texx, texy);
-			color = ft_mlx_pixel_get(&g_data.north, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
+			color = ft_mlx_pixel_get(&g_data.current, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.current.height);
+			// if (g_data.side == 'N')
+			// 	color = ft_mlx_pixel_get(&g_data.north, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
+			// else if (g_data.side == 'S')
+			// 	color = ft_mlx_pixel_get(&g_data.south, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
+			// else if (g_data.side == 'E')
+			// 	color = ft_mlx_pixel_get(&g_data.east, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
+			// else if (g_data.side == 'W')
+			// 	color = ft_mlx_pixel_get(&g_data.west, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
 			//printf("texx: %d, texy: %d\n", texx, (y - w->drawstart) / wall_height * g_data.north.height);
 			//printf("%d, %d\n", g_data.north.height, wall_height);
 			//printf("%d, %d\n", w->drawstart, y);

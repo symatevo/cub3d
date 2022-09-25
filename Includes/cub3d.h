@@ -67,6 +67,17 @@ typedef struct m_xy{
 	int	y;
 }	i_xy;
 
+typedef	struct	s_img
+{
+	void			*ptr;			//pointer to the image
+	char			*addr;			//The address of the image
+	int				bpp;			//
+	int				line_len;		//
+	int				endian;			//
+	int				width;			//The width of the image
+	int				height;			//The height of the image
+}					t_img;
+
 typedef struct s_world{
 	d_xy	pos;
 	d_xy	dir;
@@ -80,23 +91,16 @@ typedef struct s_world{
 	double	oldtime;
 	double	camerax;
 	int		side;
+	char	c;
 	int		hit;
+	// t_img		current_img;
+	// char	tside;
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
 	double	perpwalldist;
 }	t_world;
 
-typedef	struct	s_img
-{
-	void			*ptr;			//pointer to the image
-	char			*addr;			//The address of the image
-	int				bpp;			//
-	int				line_len;		//
-	int				endian;			//
-	int				width;			//The width of the image
-	int				height;			//The height of the image
-}					t_img;
 
 typedef struct	s_keys
 {
@@ -104,6 +108,7 @@ typedef struct	s_keys
 	char		down;
 	char		left;
 	char		right;
+	// char		
 	char		check;
 }				t_keys;
 
@@ -126,11 +131,13 @@ typedef struct s_data
 	t_img		east;
 	t_img		west;
 	t_keys		keys;
+	char		side;
 	int			ceiling;
 	int			floor;
-	int			temp_color;
+	//int			temp_color;
 	long double	time;
 	long double	oldtime;
+	t_img		current;
 }	t_data;
 
 extern t_data	g_data;

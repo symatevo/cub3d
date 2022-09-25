@@ -8,7 +8,7 @@ int     check_exec(char *str, t_file *f)
     ft_strlcpy(ptr, str, ft_strlen(str) + 1);
     ptr[ft_strlen(str)] = '\0';
     new = ft_substr(ft_reverse(ptr), 0, 4);
-    if (ft_strcmp(new, "buc.") == 0)
+    if (ft_strcmp(new, "buc.") == 0) //blaaa
         return 1;
     free(new);
     free(f);
