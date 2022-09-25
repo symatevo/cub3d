@@ -11,6 +11,8 @@ void     ft_find_pos(double *posx, double *posy)
 {
 	*posx = g_data.player_y;
 	*posy = g_data.player_x;
+	//g_data.player_x += 0.5;
+	//g_data.player_y += 0.5;
 }
 
 void    ft_fillxy(double *x, double *y, double xv, double yv)
@@ -27,27 +29,29 @@ int     ft_init(t_world *w, t_file f)
     ft_find_pos(&(w->pos.x), &(w->pos.y));
     x = (int)w->pos.x;
     y = (int)w->pos.y;
+	w->pos.x += 0.5;
+	w->pos.y += 0.5;
 	//printf("%c", g_data.map.mat[x][y]);
     if (g_data.map.mat[x][y] == 'N')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), -1, 0);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, 0.66);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.0, 0.66);
 	}
     else if (g_data.map.mat[x][y] == 'S')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 1, 0);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), 0, -0.66);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), 0.0, -0.66);
 	}
     else if (g_data.map.mat[x][y] == 'W')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
-		ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0);
+		ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0.0);
 
 	}
     else if (g_data.map.mat[x][y] == 'E')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
-    	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0);
+    	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0.0);
 	}
 	w->time = 0;
 	w->oldtime = 0;
@@ -56,7 +60,7 @@ int     ft_init(t_world *w, t_file f)
 
 void	ft_raydir(t_world *w, int x)
 {
-	w->camerax = 2 * x / (float)g_data.scr.image.width - 1; //(double)screenWidth)
+	w->camerax = 2 * x / (double)g_data.scr.image.width - 1; //(double)screenWidth)
 	w->raydir.x = w->dir.x + w->plane.x * w->camerax;
 	w->raydir.y = w->dir.y + w->plane.y * w->camerax;
 	//printf("stexraydirna%f\n", w->raydir.y);
@@ -88,7 +92,7 @@ void	ft_step_sidedist(t_world *w)
 		w->step.x = -1;
 		w->sidedist.x = (w->pos.x - w->map.x) * w->deltadist.x;
 	}
-	else if (w->raydir.x >= 0)
+	else
 	{
 		w->step.x = 1;
 		w->sidedist.x = (w->map.x + 1.0 - w->pos.x) * w->deltadist.x;
@@ -151,6 +155,37 @@ void	start_end_pixel(t_world *w)
 	w->drawend = (w->lineheight) / 2 + g_data.scr.image.height / 2; //screenheight;
 	if (w->drawend < 0) //screnehgith
 		w->drawend = g_data.scr.image.height - 1;
+	g_data.side = '0';
+	if (w->side == 0)
+	{
+		if (w->raydir.x < 0)
+		{
+			//printf("Ceiling color before: %d\n", g_data.ceiling);
+			//printf("Ceiling color after: %d\n",g_data.ceiling);
+			//Ooooooof de ashxati asum em
+			//g_data.side = 'N';
+			g_data.current = g_data.north;
+		}	
+		else if (w->raydir.x > 0)
+		{
+			//g_data.side = 'S';
+			g_data.current = g_data.south;
+		}
+	}
+	else if (w-> side == 1)
+	{
+		if (w->raydir.y < 0)
+		{
+	 		//g_data.side = 'W';
+			g_data.current = g_data.west;
+		}
+	 	else if (w->raydir.y > 0)
+		{
+	 		//g_data.side = 'E';
+			g_data.current = g_data.east;
+		}
+	}
+
 }
 
 int		ft_texx(t_world *w)
@@ -159,7 +194,7 @@ int		ft_texx(t_world *w)
 	double	wallx;
 
 	//if (ft_isdigit(g_data.map.mat[w->map.x][w->map.y]))
-		//texnum = ft_atoi(g_data.map.mat[w->map.x][w->map.y]) - 1;
+		//texnum = ft_atoi(g_data.map.mat[w->map.x][w->map.y]) - 1;   ++++
 	if (w->side == 0)
 		wallx = w->pos.y + w->perpwalldist * w->raydir.y;
 	else
@@ -169,9 +204,12 @@ int		ft_texx(t_world *w)
 	//printf("bl1%f\n", wallx);
 	texx  = (int)(wallx * (double)g_data.north.width); //texturewidth
 	if (w->side == 0  && w->raydir.x > 0)
-		texx = g_data.north.width - texx - 1; //texturewidth
+	//{
+		texx = g_data.current.width - texx - 1; //texturewidth
+		//w->c = 'N';
+	//}
 	if (w->side  == 1 && w->raydir.y < 0)
-		texx = g_data.north.width - texx - 1; //texturewith
+		texx = g_data.current.width - texx - 1; //texturewith
 	return (texx);
 }
 
@@ -185,7 +223,7 @@ int     ft_algorithm(t_file *f)
 	x = 0;
     w = malloc(sizeof(t_world));
     ft_init(w, *f);
-	alter_map(w);
+	alter_map(w); //of
 	//print_mat( g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
     //move
