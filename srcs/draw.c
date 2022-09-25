@@ -38,25 +38,30 @@ void	alter_map(t_world *w)
 	double	movespeed;
 	double 	rotspeed;
 	
-	movespeed = 1.5;
+	movespeed = 0.08;
 	rotspeed = 0.1;
 	if (g_data.keys.up)
 	{
+		// if (g_data.spawn == 'N' || g_data.spawn == 'S')	
+		// 	if (g_data.map.mat[(int)(g_data.player_y + w->dir.x * movespeed)][(int)(g_data.player_x - w->dir.y * movespeed)] = '0')
+		// 		g_data.player_x  = (int)(g_data.player_x - w->dir.y * movespeed);
+		// else
+		// 	if (g_data.map.mat[(int)(g_data.player_y + w->dir.x * movespeed)][(int)(g_data.player_x - w->dir.y * movespeed)] = '0')	
 		//printf("Key Up\n");
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempx = (int)(g_data.player_x - w->dir.y * movespeed);
+			g_data.player_x  = (int)(g_data.player_x - w->dir.y * movespeed);
 		else
-			tempx = (int)(g_data.player_x + w->dir.y * movespeed);
-		tempy = (int)(g_data.player_y + w->dir.x * movespeed);
+			g_data.player_x  = (int)(g_data.player_x + w->dir.y * movespeed);
+		g_data.player_y = (int)(g_data.player_y + w->dir.x * movespeed);
 		//printf("Tempx: %d, tempy: %d\n", tempx, tempy);
-		if (valid_indices(tempx, tempy))
-		{
+		//if (valid_indices(tempx, tempy))
+		//{
 			printf("AAA\n");
 			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
-			g_data.player_x = tempx;
-			g_data.player_y = tempy;
+			// g_data.player_x = tempx;
+			// g_data.player_y = tempy;
 			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
-		}
+		//}
 	}
 	if (g_data.keys.down)
 	{
