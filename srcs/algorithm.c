@@ -6,7 +6,7 @@
 /*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:52:24 by symatevo          #+#    #+#             */
-/*   Updated: 2022/09/26 18:41:53 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:40:12 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,26 @@ int	ft_texx(t_world *w)
 		wallx = w->pos.y + w->perpwalldist * w->raydir.y;
 	else
 		wallx = w->pos.x + w->perpwalldist * w->raydir.x;
+<<<<<<< HEAD
 	wallx -= floor((wallx));
 	texx = (int)(wallx * (double)g_data.north.width);
 	if (w->side == 0 && w->raydir.x > 0)
 		texx = g_data.current.width - texx - 1;
 	if (w->side == 1 && w->raydir.y < 0)
 		texx = g_data.current.width - texx - 1;
+=======
+	wallx -=  floor((wallx));
+	//printf("blnay%f %f %f\n", w->pos.x, w->perpwalldist, w->raydir.x);
+	//printf("bl1%f\n", wallx);
+	texx  = (int)(wallx * (double)g_data.current.width); //texturewidth
+	if (w->side == 0  && w->raydir.x > 0)
+	//{
+		texx = g_data.current.width - texx - 1; //texturewidth
+		//w->c = 'N';
+	//}
+	if (w->side  == 1 && w->raydir.y < 0)
+		texx = g_data.current.width - texx - 1; //texturewith
+>>>>>>> 8560d57fce72559b4d38b0909c4b709dc83e9526
 	return (texx);
 }
 
@@ -110,9 +124,14 @@ int	ft_algorithm(t_file *f)
 		draw(x, g_data.w, texx);
 		x++;
 	}
+<<<<<<< HEAD
 	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window,
 		g_data.scr.image.ptr, 0, 0);
 	mlx_string_put(g_data.scr.mlx, g_data.scr.window, 25, 25, 0x00FF0000, " ");
+=======
+	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window, g_data.scr.image.ptr, 0, 0);
+	//mlx_string_put(g_data.scr.mlx, g_data.scr.window, 25, 25, 0x00FF0000, " ");
+>>>>>>> 8560d57fce72559b4d38b0909c4b709dc83e9526
 	mlx_do_sync(g_data.scr.mlx);
 	return (0);
 }

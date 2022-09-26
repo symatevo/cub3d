@@ -6,7 +6,7 @@
 /*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 17:10:03 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:40:27 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int bl(t_file f)
 
 void    init_data()
 {
-    g_data.player_x = -1;
-    g_data.player_y = -1;
+    g_data.player_x = -1.0;
+    g_data.player_y = -1.0;
     g_data.spawn = ' ';
     g_data.keys.rotright = 0;
     g_data.keys.rotleft = 0;

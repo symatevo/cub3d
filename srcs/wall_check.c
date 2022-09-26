@@ -6,7 +6,11 @@
 /*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:25:52 by aapresya          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/26 17:09:35 by symatevo         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/26 17:07:23 by aapresya         ###   ########.fr       */
+>>>>>>> 8560d57fce72559b4d38b0909c4b709dc83e9526
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +30,15 @@ int	iterate_spaces(int y, int *x)
 
 int	on_edge(int y, int x)
 {
-	return (y == 0 || x == 0 || x == g_data.map.width - 1
-		|| y == g_data.map.height - 1);
+	if (y == 0 || x == 0 || x == g_data.map.width - 1
+		|| y == g_data.map.height - 1)
+		return (1);
+	if (surrounded_by_space(y, x))
+		return (1);
+	return (0);
 }
 
-int	surrounded_by_space(int y, int x, char c)
+int	surrounded_by_space(int y, int x)
 {
 	if ((y - 1) >= 0)
 	{
@@ -70,7 +78,7 @@ int	check_row(int y)
 			return (0);
 		if (x < g_data.map.width)
 			if (g_data.map.mat[y][x] == '0'
-				&& (surrounded_by_space(y, x, g_data.map.mat[y][x])
+				&& (surrounded_by_space(y, x)
 				|| on_edge(y, x)))
 				return (0);
 		x++;

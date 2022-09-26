@@ -6,7 +6,7 @@
 /*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 17:09:26 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:40:22 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ void	alter_map(t_world *w)
 	double	movespeed;
 	double 	rotspeed;
 	
+	
+	tempx = 0;
+	tempy = 0;
 	movespeed = 0.08;
-	rotspeed = 0.1;
+	rotspeed = 0.05;
 	if (g_data.keys.up)
 	{
 		if (!(g_data.map.mat[(int)(w->pos.x + w->dir.x * movespeed)][(int)(w->pos.y)] == '1'))
@@ -145,6 +148,7 @@ void	alter_map(t_world *w)
 		// 	g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
 		// }
 	//other direction should be multiplied by rotation matrix
+	
 }
 
 void	draw(int x, t_world *w, int texx)
@@ -166,7 +170,7 @@ void	draw(int x, t_world *w, int texx)
 		{
 			//float texy;
 			//texy = (y - w->drawstart) / wall_height * g_data.north.height;
-			//color = ft_mlx_pixel_get(&g_data.north, texx, texy);
+			//color = ft_mlx_pixel_get(&g_data.mat, texx, texy);
 			color = ft_mlx_pixel_get(&g_data.current, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.current.height);
 			// if (g_data.side == 'N')
 			// 	color = ft_mlx_pixel_get(&g_data.north, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
@@ -205,4 +209,5 @@ void	draw(int x, t_world *w, int texx)
 	// 	ft_mlx_pixel_put(&g_data.scr.image, x, y, g_data.floor);
 	// 	y++;	
 	// }
+
 }

@@ -6,7 +6,11 @@
 /*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/26 18:48:01 by symatevo         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/26 17:08:31 by aapresya         ###   ########.fr       */
+>>>>>>> 8560d57fce72559b4d38b0909c4b709dc83e9526
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +131,8 @@ typedef struct s_data
 {
 	t_screen	scr;
 	t_map		map;
-	int			player_x;
-	int			player_y;
+	double		player_x;
+	double		player_y;
 	char		spawn;
 	t_img		north;
 	t_img		south;
@@ -139,9 +143,11 @@ typedef struct s_data
 	int			ceiling;
 	int			floor;
 	//int			temp_color;
-	t_world		*w;
+	// t_world		*w;
 	long double	time;
 	long double	oldtime;
+	// int			inited;
+	t_world		*w;
 	t_img		current;
 }	t_data;
 
@@ -159,7 +165,7 @@ int				ft_error(char *err);
 void			print_mat(char **mat, int len);
 int				iterate_spaces(int y, int *x);
 int				on_edge(int y, int x);
-int				surrounded_by_space(int y, int x, char c);
+int				surrounded_by_space(int y, int x);
 int				check_row(int y);
 int				check_walls(void);
 int				check_chars(void);
@@ -183,6 +189,7 @@ void			mlx_get_screen_size(void *mlx, int *screen_w, int *screen_h);		//idk shou
 void			ft_mlx_pixel_put(t_img *image, int x, int y, int color);
 unsigned int	ft_mlx_pixel_get(t_img *image, int x, int y);
 long long		get_time(void);
+<<<<<<< HEAD
 void			ft_find_pos(double *posx, double *posy);
 void			ft_fillxy(double *x, double *y, double xv, double yv);
 void			ft_raydir(t_world *w, int x);
@@ -190,4 +197,9 @@ void			ft_map_box(t_world *w);
 void			ft_deltadist(t_world *w);
 void			ft_step_sidedist(t_world *w);
 void			ft_init(t_world *w, t_file f);
+=======
+int				ft_init(t_world *w, t_file f);
+int				spaces(char *line);
+
+>>>>>>> 8560d57fce72559b4d38b0909c4b709dc83e9526
 #endif

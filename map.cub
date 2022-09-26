@@ -1,10 +1,15 @@
 
+<<<<<<< HEAD
 NO   textures/north1.xpm
    WE textures/west1.xpm         
+=======
+NO   textures/north.xpm
+   WE textures/west.xpm
+>>>>>>> 8560d57fce72559b4d38b0909c4b709dc83e9526
 
 C 220,120,90
-        SO textures/south1.xpm
- EA textures/east1.xpm
+        SO textures/south.xpm
+ EA textures/east.xpm
 
 
 	  F 		255,,255,255
@@ -26,7 +31,7 @@ C 220,120,90
 100000000000000000000001
 100000000000000000000001
 111111111000000001010001
-110100001000000000N00001
+110100001000000000E00001
 110000101000000000000001
 110100001000011111011111
 110111111000000000000001
