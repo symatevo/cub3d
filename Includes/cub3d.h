@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 18:23:57 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:24:26 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct	s_keys
 	char		down;
 	char		left;
 	char		right;
+	char		rotleft;
+	char		rotright;
 	// char		
 	char		check;
 }				t_keys;
@@ -123,8 +125,8 @@ typedef struct s_data
 {
 	t_screen	scr;
 	t_map		map;
-	int			player_x;
-	int			player_y;
+	double		player_x;
+	double		player_y;
 	char		spawn;
 	t_img		north;
 	t_img		south;
@@ -137,6 +139,8 @@ typedef struct s_data
 	//int			temp_color;
 	long double	time;
 	long double	oldtime;
+	// int			inited;
+	t_world		*w;
 	t_img		current;
 }	t_data;
 
@@ -178,4 +182,7 @@ void			mlx_get_screen_size(void *mlx, int *screen_w, int *screen_h);		//idk shou
 void			ft_mlx_pixel_put(t_img *image, int x, int y, int color);
 unsigned int	ft_mlx_pixel_get(t_img *image, int x, int y);
 long long		get_time(void);
+int				ft_init(t_world *w, t_file f);
+int				spaces(char *line);
+
 #endif

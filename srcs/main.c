@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 21:15:44 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:25:51 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ int bl(t_file f)
 
 void    init_data()
 {
-    g_data.player_x = -1;
-    g_data.player_y = -1;
+    g_data.player_x = -1.0;
+    g_data.player_y = -1.0;
     g_data.spawn = ' ';
+    // g_data.inited = 0;
+    g_data.w = malloc(sizeof(t_world));
+    g_data.keys.rotleft = 0;
+    g_data.keys.rotright = 0;
 }
 
 int     main(int argc, char **argv)
@@ -45,23 +49,24 @@ int     main(int argc, char **argv)
     g_data.scr.mlx = mlx_init();
     if (!ft_get_sprites(f))
         return (1);
-    // ft_calculate_resolution();
-    // printf("%d\n", g_data.scr.image.height);
-    // g_data.time = 0;
-    // g_data.oldtime = 0;    
-    // g_data.scr.window = mlx_new_window(g_data.scr.mlx,
-	// 		g_data.scr.image.width, g_data.scr.image.height, "Cub3d");
-	// g_data.scr.image.ptr = mlx_new_image(g_data.scr.mlx,
-	// 		g_data.scr.image.width, g_data.scr.image.height);
-	// g_data.scr.image.addr = mlx_get_data_addr(g_data.scr.image.ptr,
-	// 		&g_data.scr.image.bpp, &g_data.scr.image.line_len,
-	// 		&g_data.scr.image.endian);
-    // g_data.keys.check = 1;
-    // mlx_hook(g_data.scr.window, 2, 1L << 0, ft_mlx_pressed, &g_data.keys);
-	// mlx_hook(g_data.scr.window, 3, 1L << 1, ft_mlx_released, &g_data.keys);
-	// mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
-	// mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
-	// mlx_loop(g_data.scr.mlx);
+    ft_calculate_resolution();
+    printf("%d\n", g_data.scr.image.height);
+    g_data.time = 0;
+    g_data.oldtime = 0;    
+    g_data.scr.window = mlx_new_window(g_data.scr.mlx,
+			g_data.scr.image.width, g_data.scr.image.height, "Cub3d");
+	g_data.scr.image.ptr = mlx_new_image(g_data.scr.mlx,
+			g_data.scr.image.width, g_data.scr.image.height);
+	g_data.scr.image.addr = mlx_get_data_addr(g_data.scr.image.ptr,
+			&g_data.scr.image.bpp, &g_data.scr.image.line_len,
+			&g_data.scr.image.endian);
+    g_data.keys.check = 1;
+    mlx_hook(g_data.scr.window, 2, 1L << 0, ft_mlx_pressed, &g_data.keys);
+	mlx_hook(g_data.scr.window, 3, 1L << 1, ft_mlx_released, &g_data.keys);
+	mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
+    //ft_init(g_data.w, *f);
+	mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
+	mlx_loop(g_data.scr.mlx);
 	return (0);
     //main_algorithm(&world);
     //memory_clear();

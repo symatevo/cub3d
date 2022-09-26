@@ -20,6 +20,25 @@ void    ft_fillxy(double *x, double *y, double xv, double yv)
     *x = xv;
     *y = yv;
 }
+// int	valid(t_world w)
+// {
+// 	if (g_data.inited == 0)
+// 	{
+// 		g_data.inited = 1;
+// 		printf("Inside if\n");
+// 		return (1);
+// 	}
+// 	printf("Please\n");
+// 	if (w.dir.x != 1 || w.dir.x != -1 || w.dir.x != 0)
+// 		return (0);
+// 	if (w.dir.y != 1 || w.dir.y != -1 || w.dir.y != 0)
+// 		return (0);
+// 	if (w.plane.x != 0 || w.plane.x != 0.66)
+// 		return (0);
+// 	if (w.plane.y != 0 || w.plane.y != 0.66)
+// 		return (0);
+// 	return (1);	/////
+// }
 
 int     ft_init(t_world *w, t_file f)
 {
@@ -31,7 +50,7 @@ int     ft_init(t_world *w, t_file f)
     y = (int)w->pos.y;
 	w->pos.x += 0.5;
 	w->pos.y += 0.5;
-	//printf("%c", g_data.map.mat[x][y]);
+	printf("%c", g_data.map.mat[x][y]);
     if (g_data.map.mat[x][y] == 'N')
 	{
         ft_fillxy(&(w->dir.x), &(w->dir.y), -1, 0);
@@ -57,6 +76,44 @@ int     ft_init(t_world *w, t_file f)
 	w->oldtime = 0;
     return (0);
 }
+
+int     ft_init_move(t_world *w, t_file f)
+{
+    int x;
+    int y;
+
+    ft_find_pos(&(w->pos.x), &(w->pos.y));
+    x = (int)w->pos.x;
+    y = (int)w->pos.y;
+	w->pos.x += 0.5;
+	w->pos.y += 0.5;
+	//printf("%c", g_data.map.mat[x][y]);
+    // if (g_data.map.mat[x][y] == 'N')
+	// {
+    //     ft_fillxy(&(w->dir.x), &(w->dir.y), -1, 0);
+	// 	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.0, 0.66);
+	// }
+    // else if (g_data.map.mat[x][y] == 'S')
+	// {
+    //     ft_fillxy(&(w->dir.x), &(w->dir.y), 1, 0);
+	// 	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.0, -0.66);
+	// }
+    // else if (g_data.map.mat[x][y] == 'W')
+	// {
+    //     ft_fillxy(&(w->dir.x), &(w->dir.y), 0, -1);
+	// 	ft_fillxy(&(w->plane.x), &(w->plane.y), -0.66, 0.0);
+
+	// }
+    // else if (g_data.map.mat[x][y] == 'E')
+	// {
+    //     ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
+    // 	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0.0);
+	// }
+	// w->time = 0;
+	// w->oldtime = 0;
+    return (0);
+}
+
 
 void	ft_raydir(t_world *w, int x)
 {
@@ -202,7 +259,7 @@ int		ft_texx(t_world *w)
 	wallx -=  floor((wallx));
 	//printf("blnay%f %f %f\n", w->pos.x, w->perpwalldist, w->raydir.x);
 	//printf("bl1%f\n", wallx);
-	texx  = (int)(wallx * (double)g_data.north.width); //texturewidth
+	texx  = (int)(wallx * (double)g_data.current.width); //texturewidth
 	if (w->side == 0  && w->raydir.x > 0)
 	//{
 		texx = g_data.current.width - texx - 1; //texturewidth
@@ -221,8 +278,9 @@ int     ft_algorithm(t_file *f)
 	int			texx;
 
 	x = 0;
-    w = malloc(sizeof(t_world));
-    ft_init(w, *f);
+    w = g_data.w;
+	ft_init(w, *f);
+	// printf("Dirx: %f, diry: %f\n", w->dir.x, w->dir.y);
 	alter_map(w); //of
 	//print_mat( g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
@@ -258,7 +316,7 @@ int     ft_algorithm(t_file *f)
 		x++;
 	}
 	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window, g_data.scr.image.ptr, 0, 0);
-	mlx_string_put(g_data.scr.mlx, g_data.scr.window, 25, 25, 0x00FF0000, " ");
+	//mlx_string_put(g_data.scr.mlx, g_data.scr.window, 25, 25, 0x00FF0000, " ");
 	mlx_do_sync(g_data.scr.mlx);
 	return (0);
 }

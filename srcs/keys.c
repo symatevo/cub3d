@@ -8,8 +8,7 @@ int	ft_mlx_pressed(int keycode, t_keys *keys)
 	ft_putchar_fd('\n', 1);
 	if (keycode == 53)
 		exit(0);
-	if ((keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0)
-		&& keys->check)
+	if (keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0 || keycode == 124 || keycode == 123)
 	{
 		if (keycode == 13)
 			keys->up = 1;
@@ -19,6 +18,10 @@ int	ft_mlx_pressed(int keycode, t_keys *keys)
 			keys->right = 1;
 		if (keycode == 0)
 			keys->left = 1;
+		if (keycode == 123)
+			keys->rotleft = 1;
+		if (keycode == 124)
+			keys->rotright = 1;
 		keys->check = 0;
 	}
 	return (0);
@@ -26,7 +29,7 @@ int	ft_mlx_pressed(int keycode, t_keys *keys)
 
 int	ft_mlx_released(int keycode, t_keys *keys)
 {
-	if (keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0)
+	if (keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0 || keycode == 124 || keycode == 123)
 	{
 		if (keycode == 13)
 			keys->up = 0;
@@ -36,6 +39,10 @@ int	ft_mlx_released(int keycode, t_keys *keys)
 			keys->right = 0;
 		if (keycode == 0)
 			keys->left = 0;
+		if (keycode == 123)
+			keys->rotleft = 0;
+		if (keycode == 124)
+			keys->rotright = 0;
 		keys->check = 1;
 	}
 	return (0);

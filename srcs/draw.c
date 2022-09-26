@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 20:43:10 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:31:20 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,83 +33,157 @@ int	valid_indices(int x, int y)
 
 void	alter_map(t_world *w)
 {
-	int		tempx;
-	int		tempy;
-	double	movespeed;
-	double 	rotspeed;
+	double		tempx;
+	double		tempy;
+	double		movespeed;
+	double 		rotspeed;
+	double		olddirx;
+	double		oldplanex;
 	
+	
+	tempx = 0;
+	tempy = 0;
 	movespeed = 0.08;
 	rotspeed = 0.1;
 	if (g_data.keys.up)
 	{
-		// if (g_data.spawn == 'N' || g_data.spawn == 'S')	
-		// 	if (g_data.map.mat[(int)(g_data.player_y + w->dir.x * movespeed)][(int)(g_data.player_x - w->dir.y * movespeed)] = '0')
-		// 		g_data.player_x  = (int)(g_data.player_x - w->dir.y * movespeed);
+		//tempy = w->pos.x + w->dir.x * movespeed;
+		// if (g_data.spawn == 'N' || g_data.spawn == 'S')
+			//tempx = g_data.player_x - w->dir.y * movespeed;
 		// else
-		// 	if (g_data.map.mat[(int)(g_data.player_y + w->dir.x * movespeed)][(int)(g_data.player_x - w->dir.y * movespeed)] = '0')	
-		//printf("Key Up\n");
-		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			g_data.player_x  = (int)(g_data.player_x - w->dir.y * movespeed);
-		else
-			g_data.player_x  = (int)(g_data.player_x + w->dir.y * movespeed);
-		g_data.player_y = (int)(g_data.player_y + w->dir.x * movespeed);
-		//printf("Tempx: %d, tempy: %d\n", tempx, tempy);
-		//if (valid_indices(tempx, tempy))
-		//{
-			printf("AAA\n");
-			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
-			// g_data.player_x = tempx;
-			// g_data.player_y = tempy;
-			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
-		//}
+		// 	tempx  = g_data.player_x + w->dir.y * movespeed;
+		if (g_data.map.mat[(int)(w->pos.x - w->dir.x * movespeed)][(int)w->pos.y] != '1')
+		{
+			printf("In the if\n");
+			w->pos.x = w->pos.x - w->dir.x * movespeed;
+			//g_data.player_y = tempy;
+			// g_data.map.mat[(int)w->pos.x][(int)w->pos.y] = '0';
+			// g_data.map.mat[(int)w->pos.x][(int)w->pos.y] = g_data.spawn;
+		}
 	}
 	if (g_data.keys.down)
 	{
+		tempy = g_data.player_y - w->dir.x * movespeed;
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempx = (int)(g_data.player_x + w->dir.y * movespeed);
+			tempx = g_data.player_x + w->dir.y * movespeed;
 		else
-			tempx = (int)(g_data.player_x - w->dir.y * movespeed);
-		tempy = (int)(g_data.player_y - w->dir.x * movespeed);
-		printf("Tempx: %d, tempy: %d\n", tempx, tempy);
-		if (valid_indices(tempx, tempy))
+			tempx = g_data.player_x - w->dir.y * movespeed;
+		if (g_data.map.mat[(int)tempy][(int)tempx] != '1')
 		{
-			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
 			g_data.player_x = tempx;
 			g_data.player_y = tempy;
-			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
+			g_data.map.mat[(int)g_data.player_y][(int)g_data.player_x] = '0';
+			g_data.map.mat[(int)g_data.player_y][(int)g_data.player_x] = g_data.spawn;
 		}
 	}
 	if (g_data.keys.left)
 	{
+		tempx = g_data.player_x + w->dir.x * movespeed;
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempy = (int)(g_data.player_y + w->dir.y * movespeed);
+			tempy = g_data.player_y + w->dir.y * movespeed;
 		else
-			tempy = (int)(g_data.player_y - w->dir.y * movespeed);
-		tempx = (int)(g_data.player_x + w->dir.x * movespeed);
-		if (valid_indices(tempx, tempy))
+			tempy = g_data.player_y - w->dir.y * movespeed;
+		if (g_data.map.mat[(int)tempy][(int)tempx] != '1')
 		{
-			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
 			g_data.player_x = tempx;
 			g_data.player_y = tempy;
-			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
+			g_data.map.mat[(int)g_data.player_y][(int)g_data.player_x] = '0';
+			g_data.map.mat[(int)g_data.player_y][(int)g_data.player_x] = g_data.spawn;
 		}
 	}
 	if (g_data.keys.right)
 	{
+		tempx = g_data.player_x - w->dir.x * movespeed;
 		if (g_data.spawn == 'N' || g_data.spawn == 'S')
-			tempy = (int)(g_data.player_y - w->dir.y * movespeed);
+			tempy = g_data.player_y - w->dir.y * movespeed;
 		else
-			tempy = (int)(g_data.player_y + w->dir.y * movespeed);
-		tempx = (int)(g_data.player_x - w->dir.x * movespeed);
-		if (valid_indices(tempx, tempy))
+			tempy = g_data.player_y + w->dir.y * movespeed;
+		if (g_data.map.mat[(int)tempy][(int)tempx] != '1')
 		{
-			g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
 			g_data.player_x = tempx;
 			g_data.player_y = tempy;
-			g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
+			g_data.map.mat[(int)g_data.player_y][(int)g_data.player_x] = '0';
+			g_data.map.mat[(int)g_data.player_y][(int)g_data.player_x] = g_data.spawn;
 		}
 	}
+	if (g_data.keys.rotright == 1)
+	{
+		printf("1 Dirx: %f, Diry: %f\n", w->dir.x, w->dir.y);
+		printf("1 Planex: %f, Planey:%f\n", w->plane.x, w->plane.y);
+		olddirx = w->dir.x;
+		w->dir.x = w->dir.x * cos(-rotspeed) - w->dir.y * sin(-rotspeed);
+		w->dir.y = olddirx * sin(-rotspeed) + w->dir.y * cos(-rotspeed);
+		oldplanex = w->plane.x;
+		w->plane.x = w->plane.x * cos(-rotspeed) - w->plane.y * sin(-rotspeed);
+		w->plane.y = oldplanex * sin(-rotspeed) + w->plane.y * cos(-rotspeed);
+		printf("Dirx: %f, Diry: %f\n", w->dir.x, w->dir.y);
+		printf("Planex: %f, Planey:%f\n", w->plane.x, w->plane.y);
+	}
+	if (g_data.keys.rotleft == 1)
+	{
+		printf("1 Dirx: %f, Diry: %f\n", w->dir.x, w->dir.y);
+		printf("1 Planex: %f, Planey:%f\n", w->plane.x, w->plane.y);
+		olddirx = w->dir.x;
+		w->dir.x = w->dir.x * cos(rotspeed) - w->dir.y * sin(rotspeed);
+		w->dir.y = olddirx * sin(rotspeed) + w->dir.y * cos(rotspeed);
+		oldplanex = w->plane.x;
+		w->plane.x = w->plane.x * cos(rotspeed) - w->plane.y * sin(rotspeed);
+		w->plane.y = oldplanex * sin(rotspeed) + w->plane.y * cos(rotspeed);
+		printf("Dirx: %f, Diry: %f\n", w->dir.x, w->dir.y);
+		printf("Planex: %f, Planey:%f\n", w->plane.x, w->plane.y);
+	}
+	
+	// if (g_data.keys.down)
+	// {
+	// 	if (g_data.spawn == 'N' || g_data.spawn == 'S')
+	// 		tempx = g_data.player_x + (int)(w->dir.y * movespeed);
+	// 	else
+	// 		tempx = g_data.player_x - (int)(w->dir.y * movespeed);
+	// 	tempy = g_data.player_y - (int)(w->dir.x * movespeed);
+	// 	printf("Dirx * movespeed: %f\n", w->dir.x * movespeed);
+	// 	//printf("Tempx: %d, tempy: %d\n", tempx, tempy);
+	// 	if (valid_indices(tempx, tempy))
+	// 	{
+	// 		g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
+	// 		g_data.player_x = tempx;
+	// 		g_data.player_y = tempy;
+	// 		g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
+	// 	}
+	// 	printf("Playerx: %d, Playery: %d\n", g_data.player_x, g_data.player_y);
+	// 	printf("Tempx: %d, Tempy: %d\n", tempx, tempy);
+	// }
+	// if (g_data.keys.left)
+	// {
+	// 	if (g_data.spawn == 'N' || g_data.spawn == 'S')
+	// 		tempy = g_data.player_y + (int)(w->dir.y * movespeed);
+	// 	else
+	// 		tempy = g_data.player_y -(int)( w->dir.y * movespeed);
+	// 	tempx = g_data.player_x + (int)(w->dir.x * movespeed);
+	// 	if (valid_indices(tempx, tempy))
+	// 	{
+	// 		g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
+	// 		g_data.player_x = tempx;
+	// 		g_data.player_y = tempy;
+	// 		g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
+	// 	}
+	// }
+	// if (g_data.keys.right)
+	// {
+	// 	if (g_data.spawn == 'N' || g_data.spawn == 'S')
+	// 		tempy = g_data.player_y - (int)(w->dir.y * movespeed);
+	// 	else
+	// 		tempy = g_data.player_y + (int)(w->dir.y * movespeed);
+	// 	tempx = g_data.player_x - (int)(w->dir.x * movespeed);
+	// 	if (valid_indices(tempx, tempy))
+	// 	{
+	// 		g_data.map.mat[g_data.player_y][g_data.player_x] = '0';
+	// 		g_data.player_x = tempx;
+	// 		g_data.player_y = tempy;
+	// 		g_data.map.mat[g_data.player_y][g_data.player_x] = g_data.spawn;
+	// 	}
+	// }
 	//other direction should be multiplied by rotation matrix
+	
 }
 
 void	draw(int x, t_world *w, int texx)
@@ -131,7 +205,7 @@ void	draw(int x, t_world *w, int texx)
 		{
 			//float texy;
 			//texy = (y - w->drawstart) / wall_height * g_data.north.height;
-			//color = ft_mlx_pixel_get(&g_data.north, texx, texy);
+			//color = ft_mlx_pixel_get(&g_data.mat, texx, texy);
 			color = ft_mlx_pixel_get(&g_data.current, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.current.height);
 			// if (g_data.side == 'N')
 			// 	color = ft_mlx_pixel_get(&g_data.north, texx, 1.0 * (y - w->drawstart) / wall_height * g_data.north.height);
@@ -170,4 +244,5 @@ void	draw(int x, t_world *w, int texx)
 	// 	ft_mlx_pixel_put(&g_data.scr.image, x, y, g_data.floor);
 	// 	y++;	
 	// }
+
 }
