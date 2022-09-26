@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:55:12 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 20:43:10 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:09:26 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	alter_map(t_world *w)
 	}
 	if (g_data.keys.rotright)
 	{
-		printf("mta\n");
+		//printf("mta\n");
 		olddirx = w->dir.x;
 		w->dir.x = w->dir.x * cos(-(rotspeed)) - w->dir.y * sin(-(rotspeed));
 		w->dir.y = olddirx * sin(-(rotspeed)) + w->dir.y * cos(-(rotspeed));
@@ -124,7 +124,7 @@ void	alter_map(t_world *w)
 	}
 	if (g_data.keys.rotleft == 1)
 	{
-		printf("mta\n");
+		//printf("mta\n");
 		olddirx = w->dir.x;
 		w->dir.x = w->dir.x * cos((rotspeed)) - w->dir.y * sin((rotspeed));
 		w->dir.y = olddirx * sin((rotspeed)) + w->dir.y * cos((rotspeed));

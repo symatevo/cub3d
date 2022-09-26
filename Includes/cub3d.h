@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 18:23:57 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:48:01 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_world{
 	d_xy	deltadist;
 	i_xy	step;
 	i_xy	map;
+	int		x;
+	int		y;
 	double	time;
 	double	oldtime;
 	double	camerax;
@@ -181,5 +183,11 @@ void			mlx_get_screen_size(void *mlx, int *screen_w, int *screen_h);		//idk shou
 void			ft_mlx_pixel_put(t_img *image, int x, int y, int color);
 unsigned int	ft_mlx_pixel_get(t_img *image, int x, int y);
 long long		get_time(void);
-int				ft_init(t_world *w, t_file f);
+void			ft_find_pos(double *posx, double *posy);
+void			ft_fillxy(double *x, double *y, double xv, double yv);
+void			ft_raydir(t_world *w, int x);
+void			ft_map_box(t_world *w);
+void			ft_deltadist(t_world *w);
+void			ft_step_sidedist(t_world *w);
+void			ft_init(t_world *w, t_file f);
 #endif

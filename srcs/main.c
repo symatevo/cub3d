@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/23 21:15:44 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:10:03 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int bl(t_file f)
     printf("blll\n");
     printf("%s %s %s %s\n" , f.texture[0].id, f.texture[0].file, f.texture[1].id, f.texture[1].file);
     printf("%s %s %s %s\n" , f.texture[2].id, f.texture[2].file, f.texture[3].id, f.texture[3].file);
-    //printf("%s %d %d %d %s %d %d %d\n", f.cf[0].id, f.cf[0].rgb.r, f.cf[0].rgb.g, f.cf[0].rgb.b, f.cf[1].id, f.cf[1].rgb.r, f.cf[1].rgb.g, f.cf[1].rgb.b);
+    printf("%s %d %d %d %s %d %d %d\n", f.cf[0].id, f.cf[0].rgb.r, f.cf[0].rgb.g, f.cf[0].rgb.b, f.cf[1].id, f.cf[1].rgb.r, f.cf[1].rgb.g, f.cf[1].rgb.b);
     printf("blll\n");
     return(1);
 }
@@ -44,7 +44,7 @@ int     main(int argc, char **argv)
     //parsing(argc, argv, f);
     if(!parsing(argc, argv, f) || !read_map(argv[1]))       //not forget to free
         return (1);
-    //bl(*f);
+    bl(*f);
     g_data.scr.mlx = mlx_init();
     if (!ft_get_sprites(f))
         return (1);

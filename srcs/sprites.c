@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprites.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 16:51:54 by symatevo          #+#    #+#             */
+/*   Updated: 2022/09/26 17:00:13 by symatevo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../Includes/cub3d.h"
 
 void	ft_calculate_resolution(void)
@@ -6,14 +18,6 @@ void	ft_calculate_resolution(void)
 	int	screen_h;
 
 	mlx_get_screen_size(g_data.scr.mlx, &screen_w, &screen_h);
-	// if (g_data.map->height > g_data.map->width)
-	// 	g_data.square_size = 0.7 * screen_h / g_data.map->height;
-	// else
-	// 	g_data.square_size = 0.7 * screen_w / g_data.map->width;
-	// g_data.scr.image.width = g_data.square_size * g_data.map->width;
-	// g_data.scr.image.height = g_data.square_size * g_data.map->height;
-	//g_data.scr.image.width = screen_w;
-	//g_data.scr.image.height = screen_h;
 	g_data.scr.image.width = 1280;
 	g_data.scr.image.height = 1100;
 }
@@ -25,7 +29,6 @@ int	ft_get_sprites(t_file *f)
 
 	j = 0;
 	i = 0;
-	//g_data.temp_color = create_trgb(1, 255, 0, 0);
 	while (j < 2)
 	{
 		if (f->cf[j].id[0] == 'C')
@@ -34,7 +37,6 @@ int	ft_get_sprites(t_file *f)
 			g_data.floor = create_trgb(1, f->cf[j].rgb.r, f->cf[j].rgb.g, f->cf[j].rgb.b);
 		j++;
 	}
-	// printf("Ceiling color before: %d\n", g_data.ceiling);
 	while (i < 4)
 	{
 		if (f->texture[i].id[0] == 'N')

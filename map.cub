@@ -1,13 +1,13 @@
 
 NO   textures/north1.xpm
-   WE textures/west1.xpm
+   WE textures/west1.xpm         
 
 C 220,120,90
         SO textures/south1.xpm
  EA textures/east1.xpm
 
 
-F 255,255,255
+	  F 		255,,255,255
 
 111111111111111111111111
 100000000000000000000001
