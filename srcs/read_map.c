@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:13:33 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 17:09:23 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:47:25 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,6 @@ void	get_height_width(int fd)
 	}
 }
 
-int	spaces(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (line)
-	{
-		while (i < ft_strlen(line) && line[i] == ' ')
-			i++;
-		if (i < ft_strlen(line) && line[i] == '1')
-			return (1);
-	}
-	return (0);
-}
-
 int	find_map(char *filename)
 {
 	char	*line;
@@ -58,7 +43,7 @@ int	find_map(char *filename)
 	while (1)
 	{
 		r = get_nextline(fd, &line);
-		if (line && (spaces(line) || line[0] == '1' || line[0] == '0')) //starts_spaces(lline) || 
+		if (line && (spaces(line) || line[0] == '1' || line[0] == '0'))
 		{
 			g_data.map.height = 1;
 			g_data.map.width = ft_strlen(line);
@@ -142,6 +127,5 @@ int	read_map(char *filename)
 		return (ft_error("Wrong characters in the map"));
 	if (g_data.spawn == ' ')
 		return (ft_error("No starting position given"));
-	// printf("Position x: %f\nPosition y: %f\n", g_data.player_x, g_data.player_y);
 	return (1);
 }

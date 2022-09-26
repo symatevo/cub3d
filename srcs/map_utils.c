@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:08:18 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 17:00:00 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:25:08 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,29 @@ int	check_chars(void)
 		}
 		y++;
 	}
+	return (1);
+}
+
+int	spaces(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line)
+	{
+		while (i < ft_strlen(line) && line[i] == ' ')
+			i++;
+		if (i < ft_strlen(line) && line[i] == '1')
+			return (1);
+	}
+	return (0);
+}
+
+int	valid_indices(int x, int y)
+{
+	if (x < 0 || x >= g_data.map.width || y < 0 || y >= g_data.map.height)
+		return (0);
+	if (g_data.map.mat[y][x] != '0')
+		return (0);
 	return (1);
 }

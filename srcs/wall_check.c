@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:25:52 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 17:07:23 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:46:44 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ int	check_walls(void)
 	y = 0;
 	while (y < g_data.map.height)
 	{
-		// printf("Y: %d\n", y);
-		// printf("The line: %s\n", g_data.map.mat[y]);
 		if (!check_row(y))
 			return (0);
 		y++;

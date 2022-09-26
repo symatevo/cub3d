@@ -72,8 +72,6 @@ int     ft_init(t_world *w, t_file f)
         ft_fillxy(&(w->dir.x), &(w->dir.y), 0, 1);
     	ft_fillxy(&(w->plane.x), &(w->plane.y), 0.66, 0.0);
 	}
-	w->time = 0;
-	w->oldtime = 0;
     return (0);
 }
 

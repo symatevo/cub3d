@@ -1,14 +1,23 @@
-# include "../Includes/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 17:45:16 by aapresya          #+#    #+#             */
+/*   Updated: 2022/09/26 17:45:50 by aapresya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../Includes/cub3d.h"
 
 int	ft_mlx_pressed(int keycode, t_keys *keys)
 {
-	// printf("Keycode: %d", keycode);
-	ft_putstr_fd("Keycode: ", 1);
-	ft_putnbr_fd(keycode, 1);
-	ft_putchar_fd('\n', 1);
 	if (keycode == 53)
 		exit(0);
-	if ((keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0 || keycode == 123 || keycode == 124))
+	if ((keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0
+			|| keycode == 123 || keycode == 124))
 	{
 		if (keycode == 13)
 			keys->up = 1;
@@ -29,7 +38,8 @@ int	ft_mlx_pressed(int keycode, t_keys *keys)
 
 int	ft_mlx_released(int keycode, t_keys *keys)
 {
-	if (keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0 || keycode == 123 || keycode == 124)
+	if (keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0
+		|| keycode == 123 || keycode == 124)
 	{
 		if (keycode == 13)
 			keys->up = 0;
