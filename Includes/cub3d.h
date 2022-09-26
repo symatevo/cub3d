@@ -108,6 +108,8 @@ typedef struct	s_keys
 	char		down;
 	char		left;
 	char		right;
+	char		rotright;
+	char		rotleft;
 	// char		
 	char		check;
 }				t_keys;
@@ -135,6 +137,7 @@ typedef struct s_data
 	int			ceiling;
 	int			floor;
 	//int			temp_color;
+	t_world		*w;
 	long double	time;
 	long double	oldtime;
 	t_img		current;
@@ -178,4 +181,5 @@ void			mlx_get_screen_size(void *mlx, int *screen_w, int *screen_h);		//idk shou
 void			ft_mlx_pixel_put(t_img *image, int x, int y, int color);
 unsigned int	ft_mlx_pixel_get(t_img *image, int x, int y);
 long long		get_time(void);
+int				ft_init(t_world *w, t_file f);
 #endif

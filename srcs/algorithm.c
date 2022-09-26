@@ -215,15 +215,14 @@ int		ft_texx(t_world *w)
 
 int     ft_algorithm(t_file *f)
 {
-    t_world     *w;
 	int			y;
 	int			x;
 	int			texx;
 
 	x = 0;
-    w = malloc(sizeof(t_world));
-    ft_init(w, *f);
-	alter_map(w); //of
+    // w = malloc(sizeof(t_world));
+    // ft_init(w, *f);
+	alter_map(g_data.w); //of
 	//print_mat( g_data.map.mat, g_data.map.height);
 	//screen in mlx like screen(screenWidth, screenHeight, 0, "Raycaster");
     //move
@@ -232,14 +231,14 @@ int     ft_algorithm(t_file *f)
 	while (x < g_data.scr.image.width) //screenWidth)
 	{
 		y = 0;
-		ft_raydir(w, x);
-		ft_map_box(w);
-		ft_deltadist(w);
-		ft_step_sidedist(w);
-		ft_DDA(w);
-		ft_perpwalldist(w);
-		start_end_pixel(w);
-		texx = ft_texx(w);
+		ft_raydir(g_data.w, x);
+		ft_map_box(g_data.w);
+		ft_deltadist(g_data.w);
+		ft_step_sidedist(g_data.w);
+		ft_DDA(g_data.w);
+		ft_perpwalldist(g_data.w);
+		start_end_pixel(g_data.w);
+		texx = ft_texx(g_data.w);
 		// while (y < g_data.scr.image.height)
 		// {
 			//if (y >= w->drawstart && y < w->drawend)
@@ -254,7 +253,7 @@ int     ft_algorithm(t_file *f)
 		// printf("%d\n", w->drawstart);
 		// printf("%d\n", w->drawend);
 		//printf("bl%d\n", texx);
-		draw(x, w, texx);
+		draw(x, g_data.w, texx);
 		x++;
 	}
 	mlx_put_image_to_window(g_data.scr.mlx, g_data.scr.window, g_data.scr.image.ptr, 0, 0);
