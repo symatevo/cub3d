@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 17:45:16 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 17:45:50 by aapresya         ###   ########.fr       */
+/*   Created: 2022/09/26 16:51:45 by symatevo          #+#    #+#             */
+/*   Updated: 2022/09/26 19:44:03 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/cub3d.h"
+# include "../Includes/cub3d.h"
 
 int	ft_mlx_pressed(int keycode, t_keys *keys)
 {

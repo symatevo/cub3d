@@ -4,3 +4,4 @@
 *.a
 cub3d
 libmlx.dylib
+venv
