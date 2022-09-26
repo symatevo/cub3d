@@ -1,10 +1,10 @@
 
-NO   textures/north1.xpm
-   WE textures/west1.xpm
+NO   textures/north.xpm
+   WE textures/west.xpm
 
 C 220,120,90
-        SO textures/south1.xpm
- EA textures/east1.xpm
+        SO textures/south.xpm
+ EA textures/east.xpm
 
 
 F 255,255,255

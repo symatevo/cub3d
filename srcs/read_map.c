@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:13:33 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 16:23:20 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:09:23 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	spaces(char *line)
 	i = 0;
 	if (line)
 	{
-		while (i < ft_strlen(line) || line[i] == ' ')
+		while (i < ft_strlen(line) && line[i] == ' ')
 			i++;
-		if (i < ft_strlen(line) && line[i] != '1')
-			return (0);
+		if (i < ft_strlen(line) && line[i] == '1')
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int	find_map(char *filename)

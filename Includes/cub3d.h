@@ -6,7 +6,7 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 16:24:26 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:08:31 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ typedef struct	s_keys
 	char		down;
 	char		left;
 	char		right;
-	char		rotleft;
 	char		rotright;
+	char		rotleft;
 	// char		
 	char		check;
 }				t_keys;
@@ -137,6 +137,7 @@ typedef struct s_data
 	int			ceiling;
 	int			floor;
 	//int			temp_color;
+	// t_world		*w;
 	long double	time;
 	long double	oldtime;
 	// int			inited;
@@ -158,7 +159,7 @@ int				ft_error(char *err);
 void			print_mat(char **mat, int len);
 int				iterate_spaces(int y, int *x);
 int				on_edge(int y, int x);
-int				surrounded_by_space(int y, int x, char c);
+int				surrounded_by_space(int y, int x);
 int				check_row(int y);
 int				check_walls(void);
 int				check_chars(void);
