@@ -24,11 +24,13 @@ void	init_data(void)
 	g_data.side = '0';
 }
 
-void	init_f(t_file *f)
+t_file	*init_f(t_file *f)
 {
+	f = malloc(sizeof(t_file));
 	f->idx = 0;
 	f->fd_file = 0;
 	f->fd = 0;
+	return (f);
 }
 
 int	main(int argc, char **argv)
@@ -36,8 +38,7 @@ int	main(int argc, char **argv)
 	t_file	*f;
 
 	init_data();
-	f = malloc(sizeof(t_file));
-	init_f(f);
+	f = init_f(f);
 	if (!parsing(argc, argv, f) || !read_map(argv[1]))
 	{
 		free(f);

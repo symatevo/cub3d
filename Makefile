@@ -16,7 +16,7 @@ MLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit -lm
 SRCS	= $(wildcard srcs/*.c)
 OBJS	= ${SRCS:.c=.o}
 CC		= gcc
-CFLAGS	= #-O3 -Wall -Wextra -Werror
+CFLAGS	= -g -ggdb3#-O3 -Wall -Wextra -Werror
 RM		= rm -rf
 
 all: $(NAME)
