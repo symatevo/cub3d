@@ -6,11 +6,11 @@
 /*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:51:45 by symatevo          #+#    #+#             */
-/*   Updated: 2022/09/26 19:44:03 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:16:08 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Includes/cub3d.h"
+#include "../Includes/cub3d.h"
 
 int	ft_mlx_pressed(int keycode, t_keys *keys)
 {

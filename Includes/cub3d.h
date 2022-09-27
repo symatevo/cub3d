@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:20:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 19:46:56 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:20:00 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_file {
 	t_texture		texture[4];
 	t_ceil_floor	cf[2];
 	int				idx;
+	int				fd_file;
 	int				fd;
 }	t_file;
 
@@ -134,6 +135,8 @@ typedef struct s_data
 	int			floor;
 	t_world		*w;
 	t_img		current;
+	int			i;
+	int			u;
 }	t_data;
 
 extern t_data	g_data;
@@ -181,4 +184,10 @@ void			ft_step_sidedist(t_world *w);
 void			ft_init(t_world *w, t_file f);
 int				spaces(char *line);
 void			init_mlx(void);
+int				check_exec(char *str, t_file *f);
+int				check_range(char *str);
+int				check_comma(char *str);
+int				check_rgb(char *str);
+int				line_parse(t_file *f, char *str);
+int				ft_parsing_checks(int idx, char *line, t_file *f, int fd);
 #endif

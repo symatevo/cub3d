@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:52:24 by symatevo          #+#    #+#             */
-/*   Updated: 2022/09/26 19:48:28 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:15:29 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ void	start_end_pixel(t_world *w)
 {
 	w->lineheight = (int)(g_data.scr.image.height / w->perpwalldist);
 	w->drawstart = -(w->lineheight) / 2 + g_data.scr.image.height / 2;
-	if (w->drawstart < 0)
-		w->drawstart = 0;
 	w->drawend = (w->lineheight) / 2 + g_data.scr.image.height / 2;
-	if (w->drawend < 0)
-		w->drawend = g_data.scr.image.height - 1;
-	g_data.side = '0';
 	if (w->side == 0)
 	{
 		if (w->raydir.x < 0)
@@ -77,14 +72,15 @@ int	ft_texx(t_world *w)
 
 	if (w->side == 0)
 		wallx = w->pos.y + w->perpwalldist * w->raydir.y;
-	else
+	else if (w->side == 1)
 		wallx = w->pos.x + w->perpwalldist * w->raydir.x;
 	wallx -= floor((wallx));
-	texx = (int)(wallx * (double)g_data.north.width);
-	if (w->side == 0 && w->raydir.x > 0)
+	texx = (int)(wallx * (double)g_data.current.width);
+	if (w->side == 0 && w->raydir.x < 0)
 		texx = g_data.current.width - texx - 1;
-	if (w->side == 1 && w->raydir.y < 0)
+	if (w->side == 1 && w->raydir.y > 0)
 		texx = g_data.current.width - texx - 1;
+	texx = g_data.current.width - texx - 1;
 	return (texx);
 }
 
@@ -96,7 +92,7 @@ int	ft_algorithm(t_file *f)
 
 	x = 0;
 	alter_map(g_data.w);
-	while (x < g_data.scr.image.width)
+	while (x < g_data.scr.image.width - 1)
 	{
 		y = 0;
 		ft_raydir(g_data.w, x);

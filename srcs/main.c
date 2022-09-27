@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapresya <aapresya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: symatevo <symatevo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 17:45:46 by aapresya          #+#    #+#             */
-/*   Updated: 2022/09/26 19:43:31 by aapresya         ###   ########.fr       */
+/*   Updated: 2022/09/27 21:59:34 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	init_data(void)
 	g_data.spawn = ' ';
 	g_data.keys.rotright = 0;
 	g_data.keys.rotleft = 0;
+	g_data.side = '0';
+}
+
+void	init_f(t_file *f)
+{
+	f->idx = 0;
+	f->fd_file = 0;
+	f->fd = 0;
 }
 
 int	main(int argc, char **argv)
@@ -29,9 +37,13 @@ int	main(int argc, char **argv)
 
 	init_data();
 	f = malloc(sizeof(t_file));
-	g_data.w = malloc(sizeof(t_world));
+	init_f(f);
 	if (!parsing(argc, argv, f) || !read_map(argv[1]))
+	{
+		free(f);
 		return (1);
+	}
+	g_data.w = malloc(sizeof(t_world));
 	g_data.scr.mlx = mlx_init();
 	if (!ft_get_sprites(f))
 		return (1);
@@ -43,5 +55,6 @@ int	main(int argc, char **argv)
 	ft_init(g_data.w, *f);
 	mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
 	mlx_loop(g_data.scr.mlx);
+	free(g_data.w);
 	return (0);
 }
