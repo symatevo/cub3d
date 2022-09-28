@@ -6,13 +6,13 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 23:25:24 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/25 23:26:06 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:49:59 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+int	ft_isprint(int c)
 {
 	if (c >= ' ' && '~' >= c)
 		return (1);

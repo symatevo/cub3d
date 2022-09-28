@@ -10,15 +10,17 @@ EA textures/north.xpm
 
  
 
-
+EA textures/north.xpm
 
  
 
 
 
-F 255,255,
 
- C 100,100,100
+F 255,255
+
+	 C 100,100,100
+
 
   11111111111
 1111000000001

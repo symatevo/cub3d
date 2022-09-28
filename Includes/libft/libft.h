@@ -6,7 +6,7 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:56:58 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/27 20:31:42 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:11:53 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 int					ft_isspace(int i);
 int					str_is_space(char *str);
-
 typedef struct		s_list
 {
 	void			*content;

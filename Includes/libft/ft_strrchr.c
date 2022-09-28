@@ -6,7 +6,7 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 21:13:54 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/27 17:31:42 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:41:57 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	const char *ptr;
+	const char	*ptr;
 
 	ptr = str;
 	while (*ptr)

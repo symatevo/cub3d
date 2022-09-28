@@ -6,14 +6,14 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:27:16 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/21 18:33:20 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:22:32 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    print_error(char *str)
+void	print_error(char *str)
 {
-    ft_putstr_fd(str, 1);
-    exit(0);
+	ft_putstr_fd(str, 1);
+	exit(0);
 }

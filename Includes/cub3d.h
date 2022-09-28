@@ -188,6 +188,8 @@ int				check_exec(char *str, t_file *f);
 int				check_range(char *str);
 int				check_comma(char *str);
 int				check_rgb(char *str);
+int				file_opening(int *fd, char *str);
+int				str_is_map(char *str);
 int				line_parse(t_file *f, char *str);
 int				ft_parsing_checks(int idx, char *line, t_file *f, int fd);
 #endif

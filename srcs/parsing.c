@@ -55,18 +55,29 @@ int	line_parse(t_file *f, char *str)
 	else
 	{
 		free(words);
-		ft_error("Wrong arguments in file");
+		return (ft_error("Wrong arguments in file"));
 	}
 	free(words);
 	return (1);
 }
 
-int	file_opening(int *fd, char *str)
+int	ft_parsing_checks(int idx, char *line, t_file *f, int fd)
 {
-	*fd = open(str, O_RDONLY);
-	if (*fd < 1)
-		return (0);
-	return (1);
+	if (f->idx != 6 && word_count(line) == 2)
+	{
+		if (!(line_parse(f, line)))
+			return (0);
+	}
+	else if (f->idx == 6)
+	{
+		if ((line[0] == ' ' || line[0] == '1') && str_is_map(line))
+			return (1);
+		if (ft_strcmp(line, "\n") != 0 && !str_is_space(line))
+			return (ft_error("Double in file"));
+	}
+	else if (ft_strcmp(line, "\n") != 0 && !str_is_space(line))
+		return (ft_error("Bad character in file"));
+	return (-1);
 }
 
 int	parsing(int argc, char **argv, t_file *f)
@@ -74,7 +85,7 @@ int	parsing(int argc, char **argv, t_file *f)
 	char	*line;
 	int		output;
 
-	output = 0;
+	output = -1;
 	if (argc == 2 && check_exec(argv[1], f))
 	{
 		if (!(file_opening(&(f->fd_file), argv[1])))
@@ -82,13 +93,13 @@ int	parsing(int argc, char **argv, t_file *f)
 		line = get_next_line(f->fd_file);
 		while (line > 0)
 		{
+			if (output == 1)
+				return (1);
+			else if (output == 0)
+				return (0);
 			output = ft_parsing_checks(f->idx, line, f, f->fd_file);
 			line = get_next_line(f->fd_file);
 		}
-		if (output == 1)
-			return (1);
-		else
-			return (0);
 	}
 	return (ft_error("Wrong argument"));
 }

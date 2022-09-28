@@ -6,7 +6,7 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 13:03:36 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/29 14:45:38 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:32:28 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*p;
 
-	if (!(p = (t_list *)malloc(sizeof(t_list))))
+	p = (t_list *)malloc(sizeof(t_list));
+	if (!(p))
 		return (0);
 	p->content = content;
 	p->next = 0;

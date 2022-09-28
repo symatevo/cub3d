@@ -6,7 +6,7 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:17:25 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/27 20:09:56 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:41:14 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*tmp;
 	int		i;
 
-	if (!s || !f || !(tmp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!s || !f || !(tmp))
 		return (NULL);
 	i = 0;
 	while (s[i] != '\0')

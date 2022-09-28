@@ -6,7 +6,7 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 11:48:20 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/30 14:11:23 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:20:12 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list *ptr;
+	t_list	*ptr;
 
 	if (!lst)
 		return ;

@@ -6,22 +6,22 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 21:13:54 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/27 17:31:42 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:12:07 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int str_is_space(char *str)
+int	str_is_space(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (!ft_isspace(str[i]))
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

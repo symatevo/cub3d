@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 	mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
 	ft_init(g_data.w, *f);
 	mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
+	free(f);
 	mlx_loop(g_data.scr.mlx);
 	free(g_data.w);
 	return (0);

@@ -6,73 +6,92 @@
 /*   By: symatevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:17:25 by symatevo          #+#    #+#             */
-/*   Updated: 2021/01/27 20:09:56 by symatevo         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:25:50 by symatevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	get_cnt(char const *s, char c)
+static size_t	lenght(char const *s, char c)
 {
-	size_t cnt;
+	size_t	len;
+	size_t	amount;
 
-	cnt = 0;
-	while (*s != '\0')
+	amount = 0;
+	while (*s)
 	{
-		if (*s == c)
+		len = 0;
+		while (*s != c && *s)
 		{
-			s++;
+			++len;
+			++s;
 		}
-		else
+		if (len != 0)
 		{
-			cnt++;
-			while (*s != '\0' && *s != c)
-			{
-				s++;
-			}
+			++amount;
+			--s;
 		}
+		++s;
 	}
-	return (cnt);
+	return (amount);
 }
 
-char	**free_machine(char **s, size_t idx)
+static void	ft_next_size(char const **s, size_t *next, char c)
 {
-	while (s[idx] != NULL && idx >= 0)
+	size_t	index;
+
+	*s += *next;
+	*next = 0;
+	index = 0;
+	while (**s && **s == c)
+		++(*s);
+	while ((*s)[index])
 	{
-		free(s[idx]);
-		s[idx] = NULL;
-		idx--;
+		if ((*s)[index] == c)
+			return ;
+		++(*next);
+		++index;
+	}
+}
+
+static char	**ft_memory_error(char **s)
+{
+	size_t	index;
+
+	index = 0;
+	while (s[index])
+	{
+		free(s[index]);
+		++index;
 	}
 	free(s);
-	s = NULL;
 	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t		idx;
-	size_t		len;
-	size_t		word_cnt;
-	char		**words;
+	char	**res;
+	size_t	len;
+	size_t	sp_len;
+	size_t	sp_index;
 
-	if (!s || !(words = (char **)malloc(sizeof(char *) * (get_cnt(s, c) + 1))))
+	if (!s)
 		return (NULL);
-	word_cnt = get_cnt(s, c);
-	idx = 0;
-	while (*s)
+	sp_len = lenght(s, c);
+	res = (char **)malloc(sizeof(char *) * (sp_len + 1));
+	if (!res)
+		return (NULL);
+	len = 0;
+	sp_index = 0;
+	while (sp_index < sp_len)
 	{
-		if (*s == c)
-			s++;
-		else
-		{
-			len = 0;
-			while (*(s + len) && *(s + len) != c)
-				len++;
-			if (idx < word_cnt && !(words[idx++] = ft_substr(s, 0, len)))
-				return (free_machine(words, idx));
-			s += len;
-		}
+		ft_next_size(&s, &len, c);
+		res[sp_index] = malloc(sizeof(char) * (len + 1));
+		if (!res[sp_index])
+			return (ft_memory_error(res));
+		ft_strlcpy(res[sp_index], s, len + 1);
+		++sp_index;
 	}
-	words[idx] = 0;
-	return (words);
+	res[sp_index] = NULL;
+	return (res);
 }
