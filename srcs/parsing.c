@@ -61,7 +61,7 @@ int	line_parse(t_file *f, char *str)
 	return (1);
 }
 
-int	ft_parsing_checks(int idx, char *line, t_file *f, int fd)
+int	ft_parsing_checks(char *line, t_file *f)
 {
 	if (f->idx != 6 && word_count(line) == 2)
 	{
@@ -86,7 +86,7 @@ int	parsing(int argc, char **argv, t_file *f)
 	int		output;
 
 	output = -1;
-	if (argc == 2 && check_exec(argv[1], f))
+	if (argc == 2 && check_exec(argv[1]))
 	{
 		if (!(file_opening(&(f->fd_file), argv[1])))
 			return (ft_error("Wrong file"));
@@ -97,7 +97,7 @@ int	parsing(int argc, char **argv, t_file *f)
 				return (1);
 			else if (output == 0)
 				return (0);
-			output = ft_parsing_checks(f->idx, line, f, f->fd_file);
+			output = ft_parsing_checks(line, f);
 			line = get_next_line(f->fd_file);
 		}
 	}

@@ -70,9 +70,10 @@ int	ft_texx(t_world *w)
 	int		texx;
 	double	wallx;
 
+	wallx = 0.0;
 	if (w->side == 0)
 		wallx = w->pos.y + w->perpwalldist * w->raydir.y;
-	else if (w->side == 1)
+	else
 		wallx = w->pos.x + w->perpwalldist * w->raydir.x;
 	wallx -= floor((wallx));
 	texx = (int)(wallx * (double)g_data.current.width);
@@ -84,7 +85,7 @@ int	ft_texx(t_world *w)
 	return (texx);
 }
 
-int	ft_algorithm(t_file *f)
+int	ft_algorithm(void)
 {
 	int	y;
 	int	x;

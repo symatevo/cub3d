@@ -12,7 +12,7 @@
 
 #include "../Includes/cub3d.h"
 
-int	check_exec(char *str, t_file *f)
+int	check_exec(char *str)
 {
 	int		idx;
 

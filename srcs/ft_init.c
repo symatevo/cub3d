@@ -24,7 +24,7 @@ void	ft_fillxy(double *x, double *y, double xv, double yv)
 	*y = yv;
 }
 
-void	ft_init(t_world *w, t_file f)
+void	ft_init(t_world *w)
 {
 	ft_find_pos(&(w->pos.x), &(w->pos.y));
 	w->x = (int)w->pos.x;

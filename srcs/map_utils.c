@@ -71,9 +71,9 @@ int	spaces(char *line)
 	i = 0;
 	if (line)
 	{
-		while (i < ft_strlen(line) && line[i] == ' ')
+		while (i < (int)ft_strlen(line) && line[i] == ' ')
 			i++;
-		if (i < ft_strlen(line) && line[i] == '1')
+		if (i < (int)ft_strlen(line) && line[i] == '1')
 			return (1);
 	}
 	return (0);

@@ -20,7 +20,7 @@ void	get_height_width(int fd)
 	while (1)
 	{
 		r = get_nextline(fd, &line);
-		if (r && ft_strlen(line) > g_data.map.width)
+		if (r && (int)ft_strlen(line) > g_data.map.width)
 		{	
 			g_data.map.width = ft_strlen(line);
 		}
@@ -62,12 +62,12 @@ int	find_map(char *filename)
 
 void	fill_map(int i, int *j, char *line)
 {
-	while (*j < ft_strlen(line))
+	while (*j < (int)ft_strlen(line))
 	{
 		g_data.map.mat[i][*j] = line[*j];
 		*j = *j + 1;
 	}
-	if (ft_strlen(line) < g_data.map.width)
+	if ((int)ft_strlen(line) < g_data.map.width)
 	{
 		while (*j < g_data.map.width)
 		{

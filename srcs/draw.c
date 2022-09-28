@@ -39,7 +39,7 @@ void	rotate(t_world *w)
 	}
 }
 
-void	left_right(t_world *w, int tempx, int tempy, double movespeed)
+void	left_right(t_world *w, double movespeed)
 {
 	if (g_data.keys.left)
 	{
@@ -61,7 +61,7 @@ void	left_right(t_world *w, int tempx, int tempy, double movespeed)
 	}
 }
 
-void	up_down(t_world *w, int tempx, int tempy, double movespeed)
+void	up_down(t_world *w, double movespeed)
 {
 	if (g_data.keys.up)
 	{
@@ -92,8 +92,8 @@ void	alter_map(t_world *w)
 	tempx = 0;
 	tempy = 0;
 	movespeed = 0.08;
-	up_down(w, tempx, tempy, movespeed);
-	left_right(w, tempx, tempy, movespeed);
+	up_down(w, movespeed);
+	left_right(w, movespeed);
 	rotate(w);
 }
 

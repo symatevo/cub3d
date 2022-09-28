@@ -26,10 +26,15 @@ void	init_data(void)
 
 t_file	*init_f(t_file *f)
 {
+	int	i;
+
+	i = 0;
 	f = malloc(sizeof(t_file));
 	f->idx = 0;
 	f->fd_file = 0;
 	f->fd = 0;
+	while (i < 4)
+		f->texture[i++].file = NULL;
 	return (f);
 }
 
@@ -37,6 +42,7 @@ int	main(int argc, char **argv)
 {
 	t_file	*f;
 
+	f = NULL;
 	init_data();
 	f = init_f(f);
 	if (!parsing(argc, argv, f) || !read_map(argv[1]))
@@ -53,7 +59,7 @@ int	main(int argc, char **argv)
 	mlx_hook(g_data.scr.window, 2, 1L << 0, ft_mlx_pressed, &g_data.keys);
 	mlx_hook(g_data.scr.window, 3, 1L << 1, ft_mlx_released, &g_data.keys);
 	mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
-	ft_init(g_data.w, *f);
+	ft_init(g_data.w);
 	mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
 	free(f);
 	mlx_loop(g_data.scr.mlx);

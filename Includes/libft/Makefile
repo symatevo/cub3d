@@ -71,19 +71,21 @@ BNS_OBJS	= $(BNS_SRCS:%.c=%.o)
 FLAGS		= -Wall -Werror -Wextra
 
 $(NAME):
-	gcc $(FLAGS) -c $(SRCS) -I ./
-	ar rc $(NAME) $(OBJS)
+	@gcc $(FLAGS) -c $(SRCS) -I ./
+	@ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
 
 bonus: $(NAME)
-	gcc $(FLAGS) -c $(BNS_SRCS) -I ./
-	ar rc $(NAME) $(BNS_OBJS)
+	@gcc $(FLAGS) -c $(BNS_SRCS) -I ./
+	@ar rc $(NAME) $(BNS_OBJS)
 
 clean:
-	rm -f $(OBJS) $(BNS_OBJS)
+	@rm -f $(OBJS) $(BNS_OBJS)
 
 fclean: clean
+	@
+	
 	rm -f $(NAME)
 
 re: fclean all
