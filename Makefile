@@ -39,9 +39,6 @@ clean:
 fclean: clean
 	@${RM} ${NAME}
 	@${RM} libmlx.dylib
-
-norme:
-	@norminette -R CheckForbiddenSourceHeader *.c *.h libft/*.c libft/*.h
 	
 bonus: all
 

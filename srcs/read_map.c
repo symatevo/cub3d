@@ -77,7 +77,7 @@ void	fill_map(int i, int *j, char *line)
 	}	
 }
 
-void	into_mat(char *filename, int line_num)
+int	into_mat(char *filename, int line_num)
 {
 	char	*line;
 	int		fd;
@@ -96,14 +96,14 @@ void	into_mat(char *filename, int line_num)
 	while (1)
 	{
 		r = get_nextline(fd, &line);
-		j = 0;
-		fill_map(i, &j, line);
-		free(line);
+		if (!(check_end(line, fd, i, &j)))
+			return (0);
 		if (!r)
 			break ;
 		i++;
 	}
 	close(fd);
+	return (1);
 }
 
 int	read_map(char *filename)
@@ -120,7 +120,8 @@ int	read_map(char *filename)
 	g_data.map.mat = ft_calloc((g_data.map.height + 1), sizeof(char *));
 	while (i < g_data.map.height)
 		g_data.map.mat[i++] = ft_calloc((g_data.map.width + 1), sizeof(char));
-	into_mat(filename, mat_line);
+	if (!into_mat(filename, mat_line))
+		return (ft_error("Map is not in the end of the file"));
 	if (!check_walls())
 		return (ft_error("The map is not surrounded by walls"));
 	if (!check_chars())

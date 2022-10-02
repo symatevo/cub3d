@@ -17,7 +17,7 @@ int	str_is_space(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && str[i] != '\n')
 	{
 		if (!ft_isspace(str[i]))
 			return (0);

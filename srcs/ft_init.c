@@ -12,6 +12,20 @@
 
 #include "../Includes/cub3d.h"
 
+int	check_end(char *line, int fd, int i, int *j)
+{
+	*j = 0;
+	if (line[0] == '\0' || line[0] == '\n')
+	{
+		free(line);
+		close(fd);
+		return (0);
+	}
+	fill_map(i, j, line);
+	free(line);
+	return (1);
+}
+
 void	ft_find_pos(double *posx, double *posy)
 {
 	*posx = g_data.player_y;

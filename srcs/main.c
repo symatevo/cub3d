@@ -46,14 +46,11 @@ int	main(int argc, char **argv)
 	init_data();
 	f = init_f(f);
 	if (!parsing(argc, argv, f) || !read_map(argv[1]))
-	{
-		free(f);
-		return (1);
-	}
+		return (free_return(1, f));
 	g_data.w = malloc(sizeof(t_world));
 	g_data.scr.mlx = mlx_init();
 	if (!ft_get_sprites(f))
-		return (1);
+		return (free_return(0, f));
 	ft_calculate_resolution();
 	init_mlx();
 	mlx_hook(g_data.scr.window, 2, 1L << 0, ft_mlx_pressed, &g_data.keys);
@@ -61,8 +58,6 @@ int	main(int argc, char **argv)
 	mlx_hook(g_data.scr.window, 17, 1L << 17, ft_mlx_terminate, &g_data.keys);
 	ft_init(g_data.w);
 	mlx_loop_hook(g_data.scr.mlx, ft_algorithm, f);
-	free(f);
 	mlx_loop(g_data.scr.mlx);
-	free(g_data.w);
-	return (0);
+	return (free_return(0, f));
 }

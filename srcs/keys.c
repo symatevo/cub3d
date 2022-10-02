@@ -15,7 +15,9 @@
 int	ft_mlx_pressed(int keycode, t_keys *keys)
 {
 	if (keycode == 53)
+	{
 		exit(0);
+	}
 	if ((keycode == 13 || keycode == 1 || keycode == 2 || keycode == 0
 			|| keycode == 123 || keycode == 124))
 	{

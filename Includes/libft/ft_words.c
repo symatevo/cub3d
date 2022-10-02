@@ -41,14 +41,14 @@ int	word_count(char *str)
 	int	word;
 
 	ft_init_ints(&word, &i, &w_c);
-	while (str[i] != '\0' && str[i])
+	while (str[i] != '\0' && str[i] && str[i] != '\n')
 	{
-		while (ft_isspace(str[i]) && str[i] != '\0')
+		while (ft_isspace(str[i]) && str[i] != '\0' && str[i] != '\n')
 		{
 			i++;
 			word = 0;
 		}
-		while (!(ft_isspace(str[i])) && str[i] != '\0')
+		while (!(ft_isspace(str[i])) && str[i] != '\0' && str[i] != '\n')
 		{
 			i++;
 			word = 1;

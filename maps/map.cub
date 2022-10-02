@@ -2,7 +2,7 @@
 NO   textures/north.xpm
    WE textures/west.xpm
 
-C 220,120,90
+C 220,120,120
         SO textures/south.xpm
  EA textures/east.xpm
 

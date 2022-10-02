@@ -69,6 +69,7 @@ int	check_rgb(char *str)
 			if (check_isnum(words[g_data.i]))
 				if (check_range(words[g_data.i]))
 					g_data.u++;
+			free(words[g_data.i]);
 			g_data.i++;
 		}
 	}

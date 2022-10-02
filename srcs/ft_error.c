@@ -27,3 +27,42 @@ int	file_opening(int *fd, char *str)
 		return (0);
 	return (1);
 }
+
+int	file_openingt(t_file *f, char *str, int i)
+{
+	if (f->texture[i].file)
+		return (0);
+	f->fd = open(str, O_RDONLY);
+	if (f->fd < 1)
+		return (0);
+	return (1);
+}
+
+int	free_return(int ret, t_file *f)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+		free(f->texture[i++].file);
+	i = 0;
+	free(f);
+	free(g_data.w);
+	while (i < g_data.map.height && g_data.map.height < 2)
+		free(g_data.map.mat[i++]);
+	free(g_data.map.mat);
+	return (ret);
+}
+
+void	free_words(char	**words, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		free(words[i]);
+		i++;
+	}
+	free(words);
+}

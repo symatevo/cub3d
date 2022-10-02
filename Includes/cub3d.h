@@ -160,6 +160,7 @@ int				check_chars(void);
 int				valid_char(char c, int x, int y);
 void			fill_map(int i, int *j, char *line);
 int				file_opening(int *fd, char *str);
+int				file_openingt(t_file *f, char *str, int i);
 int				ft_algorithm(void);
 int				parsing(int argc, char **argv, t_file *f);
 char			*get_next_line(int fd);
@@ -192,4 +193,7 @@ int				file_opening(int *fd, char *str);
 int				str_is_map(char *str);
 int				line_parse(t_file *f, char *str);
 int				ft_parsing_checks(char *line, t_file *f);
+int				free_return(int ret, t_file *f);
+void			free_words(char	**words, int i);
+int				check_end(char *line, int fd, int i, int *j);
 #endif
