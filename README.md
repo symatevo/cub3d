@@ -6,4 +6,4 @@ Raycasting is a rendering technique to create a 3D perspective in a 2D map.
 # How to run it
 Using make will build the executable "./cub3D". To run it enter a map from "maps" folder.
 For example you can simply run ./cub3d maps/1.cub
-f
+Use W A S D to move in maze and left right keys for rotation.
