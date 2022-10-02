@@ -9,3 +9,5 @@ For example you can simply run ./cub3d maps/1.cub
 Use W A S D to move in maze and left right keys for rotation.
 
 # How it looks like
+
+![map2.cub](file:///Users/symatevo/Downloads/Screen%20Shot%202022-10-02%20at%208.11.06%20PM.png)
