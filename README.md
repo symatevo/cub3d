@@ -10,4 +10,4 @@ Use W A S D to move in maze and left right keys for rotation.
 
 # How it looks like
 
-![map2.cub](file:///Users/symatevo/Downloads/Screen%20Shot%202022-10-02%20at%208.11.06%20PM.png)
+![map2.cub](https://media.discordapp.net/attachments/937622316433686548/1026168431831171193/Screen_Shot_2022-10-02_at_8.10.34_PM.png?width=1486&height=1177)
